@@ -1,0 +1,86 @@
+@import 'Variables';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $backgroud;
+  font-family: Helvetica, Times, Georgia, 'Times New Roman', serif;
+  color: $font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sdcontainer {
+  flex-wrap: wrap;
+  padding: 20px 20px 0px 20px;
+}
+.form-inline {
+  input {
+    width: 100% !important;
+  }
+}
+
+.container {
+  padding: 20px 0px;
+}
+
+.chart {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+.chart-container {
+  box-shadow: 0 2px 8px 0 $shadow;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+
+  .chart-header {
+    margin-left: 28px;
+    margin-top: 20px;
+    margin-right: 20px;
+    font-size: 25px;
+    line-height: 22px;
+  }
+
+  .chart-info {
+    font-size: 15px;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.standard-charts {
+  padding-bottom: 20px;
+}
+
+.horizontal-separator {
+  border-left: 1px solid $seperator;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.navbar {
+  .menu-item {
+    margin-left: 20px;
+    padding: 15px 10px;
+    cursor: pointer;
+  }
+  .nav-item {
+    cursor: pointer;
+  }
+  .logo {
+    font-weight: bold;
+  }
+}
