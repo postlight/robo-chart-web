@@ -33,11 +33,10 @@ body {
 .chart-container {
   box-shadow: 0 2px 8px 0 $shadow;
   border-radius: 5px;
-  max-width: 800px;
   margin: 0 auto;
-  margin-left: 10px;
-  margin-right: 10px;
+  max-width: 70%;
   margin-top: 20px;
+  margin-bottom: 20px;
   padding-top: 15px;
 
   .chart-header {

@@ -4,7 +4,9 @@ import axios from 'axios';
 import { API, TOKEN } from '../constants';
 import SheetPicker from '../components/SheetPicker';
 import { setSheetData, setActiveSheet } from '../actions/sheetData';
+import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
+import MyChart from '../components/MyChart';
 
 class Home extends Component {
   componentDidMount() {
@@ -48,7 +50,7 @@ class Home extends Component {
     }
 
     if (res.data && res.data.values) {
-      console.log(res.data.values);
+      dispatch(setChartData(res.data.values));
     }
   }
 
@@ -58,6 +60,7 @@ class Home extends Component {
       <React.Fragment>
         <SpreadsheetPicker />
         <SheetPicker />
+        <MyChart />
       </React.Fragment>
     );
   }
