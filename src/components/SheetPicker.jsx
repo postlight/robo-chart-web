@@ -25,11 +25,10 @@ const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
     });
   }
   return (
-    <div
-      className="btn-group btn-group-toggle sdcontainer"
-      data-toggle="buttons"
-    >
-      {availableSheets}
+    <div className="sheets-container">
+      <div className="btn-group btn-group-toggle" data-toggle="buttons">
+        {availableSheets}
+      </div>
     </div>
   );
 };

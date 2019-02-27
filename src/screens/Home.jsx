@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { API, TOKEN } from '../constants';
-import SheetPicker from '../components/SheetPicker';
+import ChartEditor from '../components/ChartEditor';
 import { setSheetData, setActiveSheet } from '../actions/sheetData';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
@@ -43,7 +43,7 @@ class Home extends Component {
 
     if (res.data && res.data.sheets) {
       dispatch(setSheetData(res.data));
-      if (res.data.sheets.length === 1) {
+      if (res.data.sheets.length > 0) {
         const sheetTitle = res.data.sheets[0].properties.title;
         dispatch(setActiveSheet(sheetTitle));
       }
@@ -59,8 +59,8 @@ class Home extends Component {
     return (
       <React.Fragment>
         <SpreadsheetPicker />
-        <SheetPicker />
         <MyChart />
+        <ChartEditor />
       </React.Fragment>
     );
   }

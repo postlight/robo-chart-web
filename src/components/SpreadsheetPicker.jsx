@@ -14,7 +14,7 @@ function validate(url, dispatch) {
 }
 
 const SpreadsheetPicker = ({ sheetData, dispatch }) => (
-  <div className="sdcontainer">
+  <div className="sheets-container">
     <div className="input-group input-group-lg">
       <div className="input-group-prepend">
         <span className="input-group-text" id="inputGroup-sizing-lg">

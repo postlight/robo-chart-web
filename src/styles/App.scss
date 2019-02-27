@@ -10,10 +10,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.sdcontainer {
-  flex-wrap: wrap;
-  padding: 20px 20px 0px 20px;
-}
 .form-inline {
   input {
     width: 100% !important;
@@ -21,7 +17,7 @@ body {
 }
 
 .container {
-  padding: 20px 0px;
+  padding: $hpadding 0px;
 }
 
 .chart {
@@ -30,19 +26,41 @@ body {
   margin: 0 auto;
 }
 
+.chart-editor {
+  margin: 0 auto;
+  margin-top: $hpadding;
+  margin-bottom: $hpadding;
+}
+
+.sheets-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: $vpadding;
+  .btn-group {
+    width: 100%;
+  }
+  @include lg {
+    width: $maxw;
+  }
+}
+
 .chart-container {
   box-shadow: 0 2px 8px 0 $shadow;
   border-radius: 5px;
+  padding: $vpadding $hpadding 0px $hpadding;
+  max-width: 80%;
   margin: 0 auto;
-  max-width: 70%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-top: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  @include lg {
+    max-width: $maxw;
+  }
 
   .chart-header {
     margin-left: 28px;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-top: $vpadding;
+    margin-right: $hpadding;
     font-size: 25px;
     line-height: 22px;
   }
@@ -61,7 +79,7 @@ body {
 }
 
 .standard-charts {
-  padding-bottom: 20px;
+  padding-bottom: $vpadding;
 }
 
 .horizontal-separator {
