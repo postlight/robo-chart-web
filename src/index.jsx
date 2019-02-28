@@ -9,6 +9,8 @@ import rootReducer from './reducers';
 const initialState = {
   chartData: {
     data: [],
+    start: '',
+    end: '',
   },
   sheetData: {
     sheetId: '',

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormControl } from 'react-bootstrap';
 import { setSheetId } from '../actions/sheetData';
 
 function validate(url, dispatch) {

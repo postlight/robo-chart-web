@@ -7,6 +7,7 @@ import { setSheetData, setActiveSheet } from '../actions/sheetData';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
 import MyChart from '../components/MyChart';
+import { processSpreadsheet } from '../utils/processSpreadsheet';
 
 class Home extends Component {
   componentDidMount() {
@@ -50,7 +51,8 @@ class Home extends Component {
     }
 
     if (res.data && res.data.values) {
-      dispatch(setChartData(res.data.values));
+      const processedData = processSpreadsheet(res.data.values);
+      dispatch(setChartData(processedData));
     }
   }
 

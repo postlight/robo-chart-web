@@ -5,7 +5,9 @@ const chartData = (state = [], action) => {
     case SET_CHART_DATA: {
       return {
         ...state,
-        data: action.data,
+        data: action.data.data,
+        start: action.data.start,
+        end: action.data.end,
       };
     }
     default:

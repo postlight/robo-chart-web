@@ -32,6 +32,16 @@ body {
   margin-bottom: $hpadding;
 }
 
+.nav-pills {
+  .nav-link.active {
+    background: $active;
+    color: $font;
+  }
+  .nav-link {
+    color: $font;
+  }
+}
+
 .sheets-container {
   box-shadow: 0 2px 8px 0 $shadow;
   width: 80%;
