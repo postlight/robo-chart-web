@@ -1,4 +1,4 @@
-const processSpreadsheet = values => {
+const processSpreadsheet = (values, start, end) => {
   const processedData = {
     data: [],
     start: '',
@@ -7,16 +7,17 @@ const processSpreadsheet = values => {
   let rowstart = -1;
   let colstart = 999999999;
   let colend = -1;
+  let donerows = false;
   values.forEach((element, rowindex) => {
-    if (element.length > 0) {
+    if (element.length > 0 && !donerows) {
       if (rowstart < 0) {
         rowstart = rowindex + 1;
       }
-      let done = false;
+      let donecols = false;
       const elements = [];
       element.forEach((value, colindex) => {
         const trimmedValue = value.trim();
-        if (!done) {
+        if (!donecols) {
           if (trimmedValue.length > 0) {
             elements.push(trimmedValue);
             if (colindex < colstart) {
@@ -26,11 +27,13 @@ const processSpreadsheet = values => {
               colend = colindex;
             }
           } else if (elements.length > 0) {
-            done = true;
+            donecols = true;
           }
         }
       });
       processedData.data.push(elements);
+    } else if (rowstart > 0) {
+      donerows = true;
     }
   });
 

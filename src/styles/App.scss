@@ -16,6 +16,12 @@ body {
   }
 }
 
+.grid-coord {
+  max-width: 150px;
+  float: left;
+  padding-right: 20px;
+}
+
 .container {
   padding: $hpadding 0px;
 }

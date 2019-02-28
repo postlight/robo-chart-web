@@ -15,9 +15,19 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { sheetId, activeSheet } = this.props;
-    const { sheetId: nextSheetId, activeSheet: nextActiveSheet } = nextProps;
-    if (sheetId !== nextSheetId || activeSheet !== nextActiveSheet) {
+    const { sheetId, activeSheet, start, end } = this.props;
+    const {
+      sheetId: nextSheetId,
+      activeSheet: nextActiveSheet,
+      start: nextStart,
+      end: nextEnd,
+    } = nextProps;
+    if (
+      sheetId !== nextSheetId ||
+      activeSheet !== nextActiveSheet ||
+      start !== nextStart ||
+      end !== nextEnd
+    ) {
       this.props = nextProps;
       this.runQuery();
     }
@@ -29,6 +39,10 @@ class Home extends Component {
       let url = `${API}${sheetId}${TOKEN}`;
       if (data.activeSheet.length > 0) {
         url = `${API}${sheetId}/values/${data.activeSheet}${TOKEN}`;
+      }
+      if (data.start.length > 0 && data.end.length > 0) {
+        const grid = `!${data.start}:${data.end}`;
+        url = `${API}${sheetId}/values/${data.activeSheet}${grid}${TOKEN}`;
       }
       // eslint-disable-next-line no-console
       console.log(`RQ: Home ${url}`);
@@ -72,6 +86,8 @@ const mapStateToProps = state => ({
   sheetId: state.sheetData.sheetId,
   data: state.sheetData,
   activeSheet: state.sheetData.activeSheet,
+  start: state.sheetData.start,
+  end: state.sheetData.end,
 });
 
 export default connect(mapStateToProps)(Home);

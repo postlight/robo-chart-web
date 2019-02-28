@@ -1,9 +1,14 @@
 export const SET_SHEET_ID = 'SET_SHEET_ID';
 export const SET_SHEET_DATA = 'SET_SHEET_DATA';
 export const SET_ACTIVE_SHEET = 'SET_ACTIVE_SHEET';
+export const SET_START_AND_END = 'SET_START_AND_END';
 
 export function setSheetData(data) {
   return { type: SET_SHEET_DATA, data };
+}
+
+export function setStartAndEnd(data) {
+  return { type: SET_START_AND_END, data };
 }
 
 export function setSheetId(sheetId) {

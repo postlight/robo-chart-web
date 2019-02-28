@@ -2,6 +2,7 @@ import {
   SET_SHEET_DATA,
   SET_SHEET_ID,
   SET_ACTIVE_SHEET,
+  SET_START_AND_END,
 } from '../actions/sheetData';
 
 const chartData = (state = [], action) => {
@@ -16,6 +17,15 @@ const chartData = (state = [], action) => {
       return {
         ...state,
         activeSheet: action.activeSheet,
+        start: '',
+        end: '',
+      };
+    }
+    case SET_START_AND_END: {
+      return {
+        ...state,
+        start: action.data.start,
+        end: action.data.end,
       };
     }
     case SET_SHEET_ID: {

@@ -16,6 +16,8 @@ const initialState = {
     sheetId: '',
     data: {},
     activeSheet: '',
+    start: '',
+    end: '',
   },
 };
 const store = createStore(rootReducer, initialState);
