@@ -18,11 +18,9 @@ const MyChart = ({ data, dispatch }) => {
 
     datasets = { datasets: chartData.datasets };
     chartData.options.scales.xAxes[0].labels = chartData.labels;
-    console.log(datasets);
-    console.log(chartData.labels);
   }
   return (
-    <div className="chart-container">
+    <div className="in-container sheets-container">
       <Bar data={datasets} options={chartData.options} />
     </div>
   );

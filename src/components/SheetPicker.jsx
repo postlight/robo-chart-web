@@ -24,13 +24,16 @@ const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
       );
     });
   }
-  return (
-    <div className="sheets-container">
-      <div className="btn-group btn-group-toggle" data-toggle="buttons">
-        {availableSheets}
+  if (availableSheets && availableSheets.length > 0) {
+    return (
+      <div className="sheets-container">
+        <div className="btn-group btn-group-toggle" data-toggle="buttons">
+          {availableSheets}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return '';
 };
 
 const mapStateToProps = state => ({

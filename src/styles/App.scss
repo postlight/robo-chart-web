@@ -33,9 +33,11 @@ body {
 }
 
 .sheets-container {
+  box-shadow: 0 2px 8px 0 $shadow;
   width: 80%;
   margin: 0 auto;
   margin-top: $vpadding;
+  margin-bottom: $vpadding;
   .btn-group {
     width: 100%;
   }
@@ -44,30 +46,20 @@ body {
   }
 }
 
-.chart-container {
-  box-shadow: 0 2px 8px 0 $shadow;
-  border-radius: 5px;
-  padding: $vpadding $hpadding 0px $hpadding;
-  max-width: 80%;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+.in-container {
+  padding: $vpadding $hpadding;
+}
 
-  @include lg {
-    max-width: $maxw;
-  }
+.chart-header {
+  margin-left: 28px;
+  margin-top: $vpadding;
+  margin-right: $hpadding;
+  font-size: 25px;
+  line-height: 22px;
+}
 
-  .chart-header {
-    margin-left: 28px;
-    margin-top: $vpadding;
-    margin-right: $hpadding;
-    font-size: 25px;
-    line-height: 22px;
-  }
-
-  .chart-info {
-    font-size: 15px;
-  }
+.chart-info {
+  font-size: 15px;
 }
 
 .flex {
