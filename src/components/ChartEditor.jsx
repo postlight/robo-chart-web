@@ -33,8 +33,6 @@ const ChartEditor = ({ chartData, dispatch }) => {
     return '';
   }
 
-  start = chartData.start;
-  end = chartData.end;
   return (
     <React.Fragment>
       <SheetPicker />
@@ -64,6 +62,7 @@ const ChartEditor = ({ chartData, dispatch }) => {
                       </div>
                       <input
                         type="text"
+                        key={chartData.start}
                         className="form-control"
                         placeholder=""
                         defaultValue={chartData.start}
@@ -77,6 +76,7 @@ const ChartEditor = ({ chartData, dispatch }) => {
                       </div>
                       <input
                         type="text"
+                        key={chartData.end}
                         className="form-control"
                         placeholder=""
                         defaultValue={chartData.end}
