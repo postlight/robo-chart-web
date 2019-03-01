@@ -48,8 +48,13 @@ body {
   }
 }
 
+.loader {
+  margin-left: 50%;
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+
 .sheets-container {
-  box-shadow: 0 2px 8px 0 $shadow;
   width: 80%;
   margin: 0 auto;
   margin-top: $vpadding;
@@ -60,6 +65,11 @@ body {
   @include lg {
     width: $maxw;
   }
+}
+
+.shadow {
+  box-shadow: 0 2px 8px 0 $shadow;
+  border-radius: 5px;
 }
 
 .in-container {

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { Alert, Button } from 'react-bootstrap';
+import { RotateLoader } from 'react-spinners';
 import { getLineChartData } from '../utils/line';
 import { getLineReverseChartData } from '../utils/lineReverse';
 import { setSheetId } from '../actions/sheetData';
@@ -21,18 +22,14 @@ const MyChart = ({ data, fetchingData, dispatch }) => {
     datasets = { datasets: chartData.datasets };
     chartData.options.scales.xAxes[0].labels = chartData.labels;
     return (
-      <div className="in-container sheets-container">
+      <div className="in-container sheets-container shadow">
         <Bar data={datasets} options={chartData.options} />
       </div>
     );
   }
 
-  if (fetchingData) {
-    return 'Loading';
-  }
-
   return (
-    <div className=" sheets-container">
+    <div className="sheets-container shadow">
       <Alert variant="success">
         <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
         <p>
@@ -57,6 +54,19 @@ const MyChart = ({ data, fetchingData, dispatch }) => {
           </Button>
         </div>
       </Alert>
+      {fetchingData ? (
+        <div className="sheets-container">
+          <div className="loader">
+            <RotateLoader
+              color="#aaeeaa"
+              loading={fetchingData}
+              className="loader"
+            />
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

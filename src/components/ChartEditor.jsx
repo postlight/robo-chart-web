@@ -36,7 +36,7 @@ const ChartEditor = ({ chartData, dispatch }) => {
   return (
     <React.Fragment>
       <SheetPicker />
-      <div className="sheets-container in-container">
+      <div className="sheets-container in-container shadow">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col sm={3}>
