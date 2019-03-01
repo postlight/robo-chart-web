@@ -19,6 +19,9 @@ const initialState = {
     start: '',
     end: '',
   },
+  appStatus: {
+    fetchingData: false,
+  },
 };
 const store = createStore(rootReducer, initialState);
 

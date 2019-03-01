@@ -23,7 +23,7 @@ const SpreadsheetPicker = ({ sheetData, dispatch }) => (
       <input
         type="text"
         className="form-control"
-        placeholder="https://docs.google.com/spreadsheets/d/1c_ImTJ3FJ-D49QMoApeqsNg-Ua84qyqDnUFrkm2gg/edit#gid=0"
+        placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxx/edit#gid=0"
         aria-label="Large"
         aria-describedby="inputGroup-sizing-sm"
         onChange={evt => validate(evt.target.value, dispatch)}

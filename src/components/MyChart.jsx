@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
+import { Alert, Button } from 'react-bootstrap';
 import { getLineChartData } from '../utils/line';
 import { getLineReverseChartData } from '../utils/lineReverse';
+import { setSheetId } from '../actions/sheetData';
 
-const MyChart = ({ data, dispatch }) => {
+const MyChart = ({ data, fetchingData, dispatch }) => {
   let chartData = { options: {} };
   let datasets = {};
   if (data && data.length > 0) {
@@ -18,16 +20,50 @@ const MyChart = ({ data, dispatch }) => {
 
     datasets = { datasets: chartData.datasets };
     chartData.options.scales.xAxes[0].labels = chartData.labels;
+    return (
+      <div className="in-container sheets-container">
+        <Bar data={datasets} options={chartData.options} />
+      </div>
+    );
   }
+
+  if (fetchingData) {
+    return 'Loading';
+  }
+
   return (
-    <div className="in-container sheets-container">
-      <Bar data={datasets} options={chartData.options} />
+    <div className=" sheets-container">
+      <Alert variant="success">
+        <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
+        <p>
+          Paste your Google Spreadsheet URL in the field above, and if today is
+          a good day, a chart will show up!
+        </p>
+        <p>
+          Once a URL is provided, you will be able to change the grid, colors,
+          labels, legends and other cool stuff
+        </p>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button
+            onClick={() =>
+              dispatch(
+                setSheetId('1M-c_ImTJ3FJ-D49QMoApeusNg-Ua84qyqDnUFrkm2gg'),
+              )
+            }
+            variant="outline-success"
+          >
+            Run Demo!
+          </Button>
+        </div>
+      </Alert>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   data: state.chartData.data,
+  fetchingData: state.appStatus.fetchingData,
 });
 
 export default connect(mapStateToProps)(MyChart);

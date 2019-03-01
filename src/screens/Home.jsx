@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API, TOKEN } from '../constants';
 import ChartEditor from '../components/ChartEditor';
 import { setSheetData, setActiveSheet } from '../actions/sheetData';
+import { setFetchingData } from '../actions/appStatus';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
 import MyChart from '../components/MyChart';
@@ -34,7 +35,7 @@ class Home extends Component {
   }
 
   runQuery() {
-    const { sheetId, data } = this.props;
+    const { sheetId, data, dispatch } = this.props;
     if (sheetId && sheetId.length > 5) {
       let url = `${API}${sheetId}${TOKEN}`;
       if (data.activeSheet.length > 0) {
@@ -47,9 +48,16 @@ class Home extends Component {
       // eslint-disable-next-line no-console
       console.log(`RQ: Home ${url}`);
 
-      axios.get(url).then(res => {
-        this.process(res);
-      });
+      dispatch(setFetchingData(true));
+      axios
+        .get(url)
+        .then(res => {
+          dispatch(setFetchingData(false));
+          this.process(res);
+        })
+        .catch(error => {
+          dispatch(setFetchingData(false));
+        });
     }
   }
 
