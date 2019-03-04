@@ -11,6 +11,7 @@ const initialState = {
     data: [],
     start: '',
     end: '',
+    type: 'line',
   },
   sheetData: {
     sheetId: '',

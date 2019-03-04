@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Tab, Row, Col, Nav, Button } from 'react-bootstrap';
 import SheetPicker from './SheetPicker';
 import { setStartAndEnd } from '../actions/sheetData';
+import { setChartType } from '../actions/chartData';
 
 let start = '';
 let end = '';
@@ -39,7 +40,7 @@ const ChartEditor = ({ chartData, dispatch }) => {
       <div className="sheets-container in-container shadow">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
-            <Col sm={3}>
+            <Col sm={2}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link eventKey="first">Grid</Nav.Link>
@@ -52,7 +53,7 @@ const ChartEditor = ({ chartData, dispatch }) => {
                 </Nav.Item>
               </Nav>
             </Col>
-            <Col sm={9}>
+            <Col sm={10}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <div>
@@ -93,7 +94,31 @@ const ChartEditor = ({ chartData, dispatch }) => {
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="type">
-                  <div>Hello world</div>
+                  <div
+                    className="btn-group btn-group-toggle"
+                    data-toggle="buttons"
+                  >
+                    <label key="line" className="btn btn-secondary">
+                      <input
+                        type="radio"
+                        name="types"
+                        id="line"
+                        autoComplete="off"
+                        onClick={() => dispatch(setChartType('line'))}
+                      />
+                      Line
+                    </label>
+                    <label key="bar" className="btn btn-secondary">
+                      <input
+                        type="radio"
+                        name="types"
+                        id="bar"
+                        autoComplete="off"
+                        onClick={() => dispatch(setChartType('bar'))}
+                      />
+                      Bar
+                    </label>
+                  </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="colors">
                   <div>Hello world</div>

@@ -1,7 +1,7 @@
 import { getRandomColor } from './color';
 import { options } from './chartVars';
 
-const getLineChartData = data => {
+const getLineChartData = (data, type) => {
   const chartData = {
     labels: [],
     datasets: [],
@@ -28,7 +28,7 @@ const getLineChartData = data => {
           object.pointHoverBackgroundColor = symbolColor;
           object.pointHoverBorderColor = symbolColor;
           object.fill = false;
-          object.type = 'line';
+          object.type = type;
           object.yAxisID = 'y-axis-1';
           object.label = value;
           chartData.datasets.push(object);

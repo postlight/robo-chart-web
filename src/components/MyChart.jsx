@@ -7,20 +7,21 @@ import { getLineChartData } from '../utils/line';
 import { getLineReverseChartData } from '../utils/lineReverse';
 import { setSheetId } from '../actions/sheetData';
 
-const MyChart = ({ data, fetchingData, dispatch }) => {
+const MyChart = ({ data, type, fetchingData, dispatch }) => {
   let chartData = { options: {} };
   let datasets = {};
   if (data && data.length > 0) {
     const columnCount = data[0].length;
     const rowCount = data.length;
     if (rowCount > columnCount) {
-      chartData = getLineChartData(data);
+      chartData = getLineChartData(data, type);
     } else {
-      chartData = getLineReverseChartData(data);
+      chartData = getLineReverseChartData(data, type);
     }
 
     datasets = { datasets: chartData.datasets };
     chartData.options.scales.xAxes[0].labels = chartData.labels;
+    datasets.labels = chartData.labels;
     return (
       <div className="in-container sheets-container shadow">
         <Bar data={datasets} options={chartData.options} />
@@ -73,6 +74,7 @@ const MyChart = ({ data, fetchingData, dispatch }) => {
 
 const mapStateToProps = state => ({
   data: state.chartData.data,
+  type: state.chartData.type,
   fetchingData: state.appStatus.fetchingData,
 });
 

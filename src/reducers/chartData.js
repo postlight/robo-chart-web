@@ -1,4 +1,4 @@
-import { SET_CHART_DATA } from '../actions/chartData';
+import { SET_CHART_DATA, SET_CHART_TYPE } from '../actions/chartData';
 
 const chartData = (state = [], action) => {
   switch (action.type) {
@@ -8,6 +8,12 @@ const chartData = (state = [], action) => {
         data: action.data.data,
         start: action.data.start,
         end: action.data.end,
+      };
+    }
+    case SET_CHART_TYPE: {
+      return {
+        ...state,
+        type: action.chartType,
       };
     }
     default:

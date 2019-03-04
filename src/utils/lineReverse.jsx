@@ -1,7 +1,7 @@
 import { getRandomColor } from './color';
 import { options } from './chartVars';
 
-const getLineReverseChartData = data => {
+const getLineReverseChartData = (data, type) => {
   const chartData = {
     labels: [],
     datasets: [],
@@ -32,7 +32,7 @@ const getLineReverseChartData = data => {
           object.pointHoverBackgroundColor = symbolColor;
           object.pointHoverBorderColor = symbolColor;
           object.fill = false;
-          object.type = 'line';
+          object.type = type;
           object.yAxisID = 'y-axis-1';
           object.label = value;
           chartData.datasets.push(object);
