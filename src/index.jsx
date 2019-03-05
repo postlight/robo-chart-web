@@ -13,6 +13,8 @@ const initialState = {
     end: '',
     type: 'line',
     stacked: false,
+    colors: [],
+    color: '',
   },
   sheetData: {
     sheetId: '',

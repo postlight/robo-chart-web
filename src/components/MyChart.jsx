@@ -11,8 +11,9 @@ import { getBarReverseChartData } from '../charts/barReverse';
 import { getPieChartData } from '../charts/pie';
 import { getPieReverseChartData } from '../charts/pieReverse';
 import { setSheetId } from '../actions/sheetData';
+import { setChartColors } from '../actions/chartData';
 
-const MyChart = ({ data, type, stacked, fetchingData, dispatch }) => {
+const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
   let chartData = {};
   let datasets = {};
   if (data && data.length > 0) {
@@ -23,57 +24,57 @@ const MyChart = ({ data, type, stacked, fetchingData, dispatch }) => {
     switch (type) {
       case 'bar':
         if (rowCount > columnCount) {
-          chartData = getBarChartData(data, stacked);
+          chartData = getBarChartData(data, stacked, colors);
         } else {
-          chartData = getBarReverseChartData(data, stacked);
+          chartData = getBarReverseChartData(data, stacked, colors);
         }
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
         chart = <Bar data={datasets} options={chartData.options} />;
         break;
       case 'line':
         if (rowCount > columnCount) {
-          chartData = getLineChartData(data);
+          chartData = getLineChartData(data, colors);
         } else {
-          chartData = getLineReverseChartData(data);
+          chartData = getLineReverseChartData(data, colors);
         }
 
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
         chart = <Line data={datasets} options={chartData.options} />;
         break;
       case 'horizontalBar':
-        chartData = getHorizontalBarChartData(data);
+        chartData = getHorizontalBarChartData(data, colors);
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
         chart = <HorizontalBar data={datasets} options={chartData.options} />;
         break;
       case 'pie':
         if (rowCount > columnCount) {
-          chartData = getPieChartData(data);
+          chartData = getPieChartData(data, false, colors);
         } else {
-          chartData = getPieReverseChartData(data);
+          chartData = getPieReverseChartData(data, false, colors);
         }
         chart = <Pie data={chartData.data} options={chartData.options} />;
         break;
       case 'semi-pie':
         if (rowCount > columnCount) {
-          chartData = getPieChartData(data, true);
+          chartData = getPieChartData(data, true, colors);
         } else {
-          chartData = getPieReverseChartData(data, true);
+          chartData = getPieReverseChartData(data, true, colors);
         }
         chart = <Pie data={chartData.data} options={chartData.options} />;
         break;
       case 'doughnut':
         if (rowCount > columnCount) {
-          chartData = getPieChartData(data);
+          chartData = getPieChartData(data, false, colors);
         } else {
-          chartData = getPieReverseChartData(data);
+          chartData = getPieReverseChartData(data, false, colors);
         }
         chart = <Doughnut data={chartData.data} options={chartData.options} />;
         break;
       case 'semi-doughnut':
         if (rowCount > columnCount) {
-          chartData = getPieChartData(data, true);
+          chartData = getPieChartData(data, true, colors);
         } else {
-          chartData = getPieReverseChartData(data, true);
+          chartData = getPieReverseChartData(data, true, colors);
         }
         chart = <Doughnut data={chartData.data} options={chartData.options} />;
         break;
@@ -82,6 +83,12 @@ const MyChart = ({ data, type, stacked, fetchingData, dispatch }) => {
         break;
     }
 
+    if (colors.length !== chartData.colors.length) {
+      const colorsData = {
+        colors: chartData.colors,
+      };
+      dispatch(setChartColors(colorsData));
+    }
     return <div className="in-container sheets-container shadow">{chart}</div>;
   }
 
@@ -130,6 +137,7 @@ const MyChart = ({ data, type, stacked, fetchingData, dispatch }) => {
 
 const mapStateToProps = state => ({
   data: state.chartData.data,
+  colors: state.chartData.colors,
   type: state.chartData.type,
   stacked: state.chartData.stacked,
   fetchingData: state.appStatus.fetchingData,
