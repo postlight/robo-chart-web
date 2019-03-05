@@ -1,48 +1,58 @@
-const processSpreadsheet = (values, start, end) => {
+const processSpreadsheet = (values, startr = 0, startc = 0) => {
   const processedData = {
     data: [],
     start: '',
     end: '',
+    startr: 0,
+    startc: 0,
   };
   let rowstart = -1;
   let colstart = 999999999;
   let colend = -1;
   let donerows = false;
   values.forEach((element, rowindex) => {
-    if (element.length > 0 && !donerows) {
-      if (rowstart < 0) {
-        rowstart = rowindex + 1;
-      }
-      let donecols = false;
-      const elements = [];
-      element.forEach((value, colindex) => {
-        const trimmedValue = value.trim();
-        if (!donecols) {
-          if (trimmedValue.length > 0) {
-            elements.push(trimmedValue);
-            if (colindex < colstart) {
-              colstart = colindex;
-            }
-            if (colindex > colend) {
-              colend = colindex;
-            }
-          } else if (elements.length > 0) {
-            donecols = true;
-          }
+    if (rowindex >= startr) {
+      if (element.length > 0 && !donerows) {
+        if (rowstart < 0) {
+          rowstart = rowindex + 1;
         }
-      });
-      processedData.data.push(elements);
-    } else if (rowstart > 0) {
-      donerows = true;
+        let donecols = false;
+        const elements = [];
+        element.forEach((value, colindex) => {
+          if (colindex >= startc) {
+            const trimmedValue = value.trim();
+            if (!donecols) {
+              if (trimmedValue.length > 0) {
+                elements.push(trimmedValue);
+                if (colindex < colstart) {
+                  colstart = colindex;
+                }
+                if (colindex > colend) {
+                  colend = colindex;
+                }
+              } else if (elements.length > 0) {
+                donecols = true;
+              }
+            }
+          }
+        });
+        processedData.data.push(elements);
+      } else if (rowstart > 0) {
+        donerows = true;
+      }
     }
   });
 
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
   const rowend = rowstart + processedData.data.length - 1;
   const gridStart = alphabet[colstart] + rowstart;
-  const gridend = alphabet[colend] + rowend;
+  const gridEnd = alphabet[colend] + rowend;
+  processedData.startr = rowstart;
+  processedData.startc = colstart;
+
   processedData.start = gridStart;
-  processedData.end = gridend;
+  processedData.end = gridEnd;
+  // console.log(`${gridStart} ${gridEnd} ${processedData.data.length}`);
 
   return processedData;
 };

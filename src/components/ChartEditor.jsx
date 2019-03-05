@@ -185,9 +185,6 @@ const ChartEditor = ({ chartData, dispatch }) => {
         <Card.Body>
           <SketchPicker color={chartData.color} onChange={handleColorChange} />
           {colorPickers}
-          <Button variant="outline-secondary" onClick={() => reload(dispatch)}>
-            Reload
-          </Button>
         </Card.Body>
       </Card>
 

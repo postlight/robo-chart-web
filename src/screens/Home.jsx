@@ -73,7 +73,24 @@ class Home extends Component {
     }
 
     if (res.data && res.data.values) {
-      const processedData = processSpreadsheet(res.data.values);
+      let processedData = processSpreadsheet(res.data.values);
+      let done = false;
+      while (processedData && processedData.data.length > 0 && !done) {
+        const tempProcessedData = processSpreadsheet(
+          res.data.values,
+          processedData.startr + 1,
+          processedData.startc + 1,
+        );
+        if (
+          tempProcessedData &&
+          tempProcessedData.data.length > processedData.data.length
+        ) {
+          processedData = tempProcessedData;
+        } else {
+          done = true;
+        }
+      }
+
       dispatch(setChartData(processedData));
     }
   }
