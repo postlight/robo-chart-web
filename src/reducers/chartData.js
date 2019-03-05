@@ -11,9 +11,16 @@ const chartData = (state = [], action) => {
       };
     }
     case SET_CHART_TYPE: {
+      let type = action.chartType;
+      let stacked = false;
+      if (action.chartType === 'stacked') {
+        type = 'bar';
+        stacked = true;
+      }
       return {
         ...state,
-        type: action.chartType,
+        type,
+        stacked,
       };
     }
     default:

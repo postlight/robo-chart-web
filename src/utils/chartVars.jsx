@@ -27,27 +27,28 @@ const options = {
     intersect: false,
     callbacks: {},
   },
-  elements: {
-    line: {
-      fill: false,
-    },
-  },
   scales: {
     xAxes: [
       {
+        stacked: false,
         display: true,
         gridLines: { display: false },
         labels: [],
+        id: 'x-axis-1',
+        ticks: {
+          beginAtZero: true,
+        },
       },
     ],
     yAxes: [
       {
+        stacked: false,
         type: 'linear',
         display: true,
         position: 'left',
         id: 'y-axis-1',
         ticks: {
-          beginAtZero: false,
+          beginAtZero: true,
         },
         gridLines: {
           zeroLineColor: '#888',

@@ -1,7 +1,7 @@
-import { getRandomColor } from './color';
-import { options } from './chartVars';
+import { randomColor } from 'randomcolor';
+import { options } from '../utils/chartVars';
 
-const getLineChartData = (data, type) => {
+const getBarReverseChartData = (data, stacked) => {
   const chartData = {
     labels: [],
     datasets: [],
@@ -17,10 +17,15 @@ const getLineChartData = (data, type) => {
     }
     element.forEach((value, colindex) => {
       const numericalValue = value.replace(/[^\d.-]/g, '');
+
       if (rowindex === 0) {
         if (value && value.length > 0) {
+          chartData.labels.push(value);
+        }
+      } else if (colindex === 0) {
+        if (value && value.length > 0) {
           const object = { data: [] };
-          const symbolColor = getRandomColor(element.length, colindex);
+          const symbolColor = randomColor();
           object.borderColor = symbolColor;
           object.backgroundColor = symbolColor;
           object.pointBorderColor = symbolColor;
@@ -28,25 +33,25 @@ const getLineChartData = (data, type) => {
           object.pointHoverBackgroundColor = symbolColor;
           object.pointHoverBorderColor = symbolColor;
           object.fill = false;
-          object.type = type;
           object.yAxisID = 'y-axis-1';
           object.label = value;
           chartData.datasets.push(object);
         }
-      } else if (colindex === 0) {
-        chartData.labels.push(value);
       } else {
-        chartData.datasets[colindex - 1].data.push(numericalValue);
+        chartData.datasets[rowindex - 1].data.push(numericalValue);
       }
     });
-    let i = element.length;
-    for (; i < columnCount; ) {
-      chartData.datasets[i - 1].data.push(0);
-      i += 1;
-    }
   });
 
+  chartData.options.scales.xAxes[0].labels = chartData.labels;
+  chartData.options.scales.xAxes[0].stacked = stacked;
+  chartData.options.scales.yAxes[0].ticks = {
+    beginAtZero: true,
+  };
+  chartData.options.scales.xAxes[0].ticks = {
+    beginAtZero: true,
+  };
   return chartData;
 };
 
-export { getLineChartData };
+export { getBarReverseChartData };

@@ -26,7 +26,7 @@ const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
   }
   if (availableSheets && availableSheets.length > 0) {
     return (
-      <div className="sheets-container">
+      <div className="sheets-container sheet-picker">
         <div className="btn-group btn-group-toggle" data-toggle="buttons">
           {availableSheets}
         </div>

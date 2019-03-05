@@ -12,6 +12,7 @@ const initialState = {
     start: '',
     end: '',
     type: 'line',
+    stacked: false,
   },
   sheetData: {
     sheetId: '',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Tab, Row, Col, Nav, Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import SheetPicker from './SheetPicker';
 import { setStartAndEnd } from '../actions/sheetData';
 import { setChartType } from '../actions/chartData';
@@ -37,96 +37,104 @@ const ChartEditor = ({ chartData, dispatch }) => {
   return (
     <React.Fragment>
       <SheetPicker />
-      <div className="sheets-container in-container shadow">
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-          <Row>
-            <Col sm={2}>
-              <Nav variant="pills" className="flex-column">
-                <Nav.Item>
-                  <Nav.Link eventKey="first">Grid</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="type">Type</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="colors">Colors</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Col>
-            <Col sm={10}>
-              <Tab.Content>
-                <Tab.Pane eventKey="first">
-                  <div>
-                    <div className="input-group grid-coord">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">From</span>
-                      </div>
-                      <input
-                        type="text"
-                        key={chartData.start}
-                        className="form-control"
-                        placeholder=""
-                        defaultValue={chartData.start}
-                        onChange={evt => updateStart(evt.target.value)}
-                      />
-                    </div>
+      <div className="sheets-container ">
+        <Card bg="light">
+          <Card.Header>Chart Type</Card.Header>
+          <Card.Body>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('line'))}
+            >
+              Line
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('bar'))}
+            >
+              Bar
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('horizontalBar'))}
+            >
+              Horizontal Bar
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('stacked'))}
+            >
+              Stacked
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('pie'))}
+            >
+              Pie
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('semi-pie'))}
+            >
+              Semi Pie
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('doughnut'))}
+            >
+              Doughnut
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => dispatch(setChartType('semi-doughnut'))}
+            >
+              Semi Doughnot
+            </Button>
+          </Card.Body>
+        </Card>
+      </div>
 
-                    <div className="input-group grid-coord">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">To</span>
-                      </div>
-                      <input
-                        type="text"
-                        key={chartData.end}
-                        className="form-control"
-                        placeholder=""
-                        defaultValue={chartData.end}
-                        onChange={evt => updateEnd(evt.target.value)}
-                      />
-                    </div>
+      <div className="sheets-container ">
+        <Card bg="light">
+          <Card.Header>Grid</Card.Header>
+          <Card.Body>
+            <div>
+              <div className="input-group grid-coord">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">From</span>
+                </div>
+                <input
+                  type="text"
+                  key={chartData.start}
+                  className="form-control"
+                  placeholder=""
+                  defaultValue={chartData.start}
+                  onChange={evt => updateStart(evt.target.value)}
+                />
+              </div>
 
-                    <Button
-                      variant="outline-secondary"
-                      onClick={() => reload(dispatch)}
-                    >
-                      Reload
-                    </Button>
-                  </div>
-                </Tab.Pane>
-                <Tab.Pane eventKey="type">
-                  <div
-                    className="btn-group btn-group-toggle"
-                    data-toggle="buttons"
-                  >
-                    <label key="line" className="btn btn-secondary">
-                      <input
-                        type="radio"
-                        name="types"
-                        id="line"
-                        autoComplete="off"
-                        onClick={() => dispatch(setChartType('line'))}
-                      />
-                      Line
-                    </label>
-                    <label key="bar" className="btn btn-secondary">
-                      <input
-                        type="radio"
-                        name="types"
-                        id="bar"
-                        autoComplete="off"
-                        onClick={() => dispatch(setChartType('bar'))}
-                      />
-                      Bar
-                    </label>
-                  </div>
-                </Tab.Pane>
-                <Tab.Pane eventKey="colors">
-                  <div>Hello world</div>
-                </Tab.Pane>
-              </Tab.Content>
-            </Col>
-          </Row>
-        </Tab.Container>
+              <div className="input-group grid-coord">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">To</span>
+                </div>
+                <input
+                  type="text"
+                  key={chartData.end}
+                  className="form-control"
+                  placeholder=""
+                  defaultValue={chartData.end}
+                  onChange={evt => updateEnd(evt.target.value)}
+                />
+              </div>
+
+              <Button
+                variant="outline-secondary"
+                onClick={() => reload(dispatch)}
+              >
+                Reload
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
       </div>
     </React.Fragment>
   );

@@ -1,32 +1,88 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Bar } from 'react-chartjs-2';
+import { Line, Bar, HorizontalBar, Pie, Doughnut } from 'react-chartjs-2';
 import { Alert, Button } from 'react-bootstrap';
 import { RotateLoader } from 'react-spinners';
-import { getLineChartData } from '../utils/line';
-import { getLineReverseChartData } from '../utils/lineReverse';
+import { getLineChartData } from '../charts/line';
+import { getLineReverseChartData } from '../charts/lineReverse';
+import { getHorizontalBarChartData } from '../charts/horizontalBar';
+import { getBarChartData } from '../charts/bar';
+import { getBarReverseChartData } from '../charts/barReverse';
+import { getPieChartData } from '../charts/pie';
+import { getPieReverseChartData } from '../charts/pieReverse';
 import { setSheetId } from '../actions/sheetData';
 
-const MyChart = ({ data, type, fetchingData, dispatch }) => {
-  let chartData = { options: {} };
+const MyChart = ({ data, type, stacked, fetchingData, dispatch }) => {
+  let chartData = {};
   let datasets = {};
   if (data && data.length > 0) {
     const columnCount = data[0].length;
     const rowCount = data.length;
-    if (rowCount > columnCount) {
-      chartData = getLineChartData(data, type);
-    } else {
-      chartData = getLineReverseChartData(data, type);
+
+    let chart;
+    switch (type) {
+      case 'bar':
+        if (rowCount > columnCount) {
+          chartData = getBarChartData(data, stacked);
+        } else {
+          chartData = getBarReverseChartData(data, stacked);
+        }
+        datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chart = <Bar data={datasets} options={chartData.options} />;
+        break;
+      case 'line':
+        if (rowCount > columnCount) {
+          chartData = getLineChartData(data);
+        } else {
+          chartData = getLineReverseChartData(data);
+        }
+
+        datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chart = <Line data={datasets} options={chartData.options} />;
+        break;
+      case 'horizontalBar':
+        chartData = getHorizontalBarChartData(data);
+        datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chart = <HorizontalBar data={datasets} options={chartData.options} />;
+        break;
+      case 'pie':
+        if (rowCount > columnCount) {
+          chartData = getPieChartData(data);
+        } else {
+          chartData = getPieReverseChartData(data);
+        }
+        chart = <Pie data={chartData.data} options={chartData.options} />;
+        break;
+      case 'semi-pie':
+        if (rowCount > columnCount) {
+          chartData = getPieChartData(data, true);
+        } else {
+          chartData = getPieReverseChartData(data, true);
+        }
+        chart = <Pie data={chartData.data} options={chartData.options} />;
+        break;
+      case 'doughnut':
+        if (rowCount > columnCount) {
+          chartData = getPieChartData(data);
+        } else {
+          chartData = getPieReverseChartData(data);
+        }
+        chart = <Doughnut data={chartData.data} options={chartData.options} />;
+        break;
+      case 'semi-doughnut':
+        if (rowCount > columnCount) {
+          chartData = getPieChartData(data, true);
+        } else {
+          chartData = getPieReverseChartData(data, true);
+        }
+        chart = <Doughnut data={chartData.data} options={chartData.options} />;
+        break;
+
+      default:
+        break;
     }
 
-    datasets = { datasets: chartData.datasets };
-    chartData.options.scales.xAxes[0].labels = chartData.labels;
-    datasets.labels = chartData.labels;
-    return (
-      <div className="in-container sheets-container shadow">
-        <Bar data={datasets} options={chartData.options} />
-      </div>
-    );
+    return <div className="in-container sheets-container shadow">{chart}</div>;
   }
 
   return (
@@ -75,6 +131,7 @@ const MyChart = ({ data, type, fetchingData, dispatch }) => {
 const mapStateToProps = state => ({
   data: state.chartData.data,
   type: state.chartData.type,
+  stacked: state.chartData.stacked,
   fetchingData: state.appStatus.fetchingData,
 });
 

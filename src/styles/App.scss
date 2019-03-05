@@ -59,11 +59,23 @@ body {
   margin: 0 auto;
   margin-top: $vpadding;
   margin-bottom: $vpadding;
-  .btn-group {
-    width: 100%;
-  }
   @include lg {
     width: $maxw;
+  }
+}
+
+.card-body {
+  button {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  padding-bottom: 0px;
+}
+
+.sheet-picker {
+  overflow: auto;
+  .btn-group {
+    width: 100%;
   }
 }
 
