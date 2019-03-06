@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Line, Bar, HorizontalBar, Pie, Doughnut } from 'react-chartjs-2';
 import { Alert, Button } from 'react-bootstrap';
-import { RotateLoader } from 'react-spinners';
+import { PulseLoader } from 'react-spinners';
 import { getLineChartData } from '../charts/line';
 import { getLineReverseChartData } from '../charts/lineReverse';
 import { getHorizontalBarChartData } from '../charts/horizontalBar';
@@ -13,12 +13,23 @@ import { getPieReverseChartData } from '../charts/pieReverse';
 import { setSheetId } from '../actions/sheetData';
 import { setChartColors } from '../actions/chartData';
 
+const getChartDimensions = value => {
+  const width = (100 * value) / 100;
+  const height = (95 * width) / 100;
+  return [width, height];
+};
+
 const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
   let chartData = {};
   let datasets = {};
   if (data && data.length > 0) {
     const columnCount = data[0].length;
     const rowCount = data.length;
+
+    let dimensions = [];
+    if (window.innerWidth < 900) {
+      dimensions = getChartDimensions(window.innerWidth);
+    }
 
     let chart;
     switch (type) {
@@ -89,7 +100,17 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
       };
       dispatch(setChartColors(colorsData));
     }
-    return <div className="in-container sheets-container shadow">{chart}</div>;
+
+    let style = {};
+    if (dimensions.length > 0) {
+      style = { width: dimensions[0], height: dimensions[1] };
+    }
+
+    return (
+      <div className="in-container sheets-container shadow" style={style}>
+        {chart}
+      </div>
+    );
   }
 
   return (
@@ -121,8 +142,8 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
       {fetchingData ? (
         <div className="sheets-container">
           <div className="loader">
-            <RotateLoader
-              color="#aaeeaa"
+            <PulseLoader
+              color="#5c646d"
               loading={fetchingData}
               className="loader"
             />

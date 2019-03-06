@@ -1,6 +1,10 @@
 @import 'Colors';
 @import 'Screens';
 
-$hpadding: 20px;
-$vpadding: 30px;
+$hpadding: 5px;
+$vpadding: 10px;
+@include lg {
+  $hpadding: 20px;
+  $vpadding: 30px;
+}
 $maxw: 1100px;

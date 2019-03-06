@@ -1,12 +1,12 @@
 const options = {
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   layout: {
     padding: {
-      left: 25,
-      right: 25,
-      top: 20,
-      bottom: 20,
+      left: 10,
+      right: 10,
+      top: 10,
+      bottom: 10,
     },
   },
   hover: {

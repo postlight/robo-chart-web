@@ -59,7 +59,8 @@ body {
 }
 
 .loader {
-  margin-left: 50%;
+  padding-left: 50%;
+  margin-left: -28px;
   margin-top: 50px;
   padding-bottom: 50px;
 }
@@ -98,7 +99,7 @@ body {
 }
 
 .in-container {
-  padding: $vpadding $hpadding;
+  // padding: $vpadding $hpadding;
 }
 
 .chart-header {
