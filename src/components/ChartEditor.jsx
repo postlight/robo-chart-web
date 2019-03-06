@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { SketchPicker } from 'react-color';
 import { cloneDeep } from 'lodash';
 import SheetPicker from './SheetPicker';

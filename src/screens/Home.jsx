@@ -96,7 +96,6 @@ class Home extends Component {
   }
 
   render() {
-    const { data } = this.props;
     return (
       <React.Fragment>
         <SpreadsheetPicker />

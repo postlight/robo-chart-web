@@ -22,7 +22,6 @@ const getChartDimensions = value => {
 
 const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
   const { startFrom, title, flipAxis, type, colors, stacked, data } = cdata;
-  console.log('here');
 
   let chartData = {};
   let datasets = {};
