@@ -27,7 +27,9 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
     const rowCount = data.length;
 
     let dimensions = [];
+    let maintainAspectRatio = true;
     if (window.innerWidth < 900) {
+      maintainAspectRatio = false;
       dimensions = getChartDimensions(window.innerWidth);
     }
 
@@ -40,6 +42,7 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
           chartData = getBarReverseChartData(data, stacked, colors);
         }
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <Bar data={datasets} options={chartData.options} />;
         break;
       case 'line':
@@ -50,11 +53,13 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
         }
 
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <Line data={datasets} options={chartData.options} />;
         break;
       case 'horizontalBar':
         chartData = getHorizontalBarChartData(data, colors);
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <HorizontalBar data={datasets} options={chartData.options} />;
         break;
       case 'pie':
@@ -63,6 +68,7 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
         } else {
           chartData = getPieReverseChartData(data, false, colors);
         }
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <Pie data={chartData.data} options={chartData.options} />;
         break;
       case 'semi-pie':
@@ -71,6 +77,7 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
         } else {
           chartData = getPieReverseChartData(data, true, colors);
         }
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <Pie data={chartData.data} options={chartData.options} />;
         break;
       case 'doughnut':
@@ -79,6 +86,7 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
         } else {
           chartData = getPieReverseChartData(data, false, colors);
         }
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <Doughnut data={chartData.data} options={chartData.options} />;
         break;
       case 'semi-doughnut':
@@ -87,6 +95,7 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
         } else {
           chartData = getPieReverseChartData(data, true, colors);
         }
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
         chart = <Doughnut data={chartData.data} options={chartData.options} />;
         break;
 

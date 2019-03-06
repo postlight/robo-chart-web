@@ -15,6 +15,7 @@ const getPieReverseChartData = (data, semi, colors) => {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       circumference,
       rotation,
     },
