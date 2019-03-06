@@ -52,7 +52,6 @@ const processSpreadsheet = (values, startr = 0, startc = 0) => {
 
   processedData.start = gridStart;
   processedData.end = gridEnd;
-  // console.log(`${gridStart} ${gridEnd} ${processedData.data.length}`);
 
   return processedData;
 };

@@ -214,31 +214,33 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
 
   return (
     <div className="sheets-container shadow">
-      <Alert variant="success">
-        <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
-        <p>
-          Paste your Google Spreadsheet URL in the field above, and if today is
-          a good day, a chart will show up!
-        </p>
-        <p>
-          Once a URL is provided, you will be able to change the grid, colors,
-          labels, legends and other cool stuff
-        </p>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button
-            onClick={() =>
-              dispatch(
-                setSheetId('1M-c_ImTJ3FJ-D49QMoApeusNg-Ua84qyqDnUFrkm2gg'),
-              )
-            }
-            variant="outline-success"
-          >
-            Run Demo!
-          </Button>
-        </div>
-      </Alert>
-      {fetchingData ? (
+      {!fetchingData && (
+        <Alert variant="success">
+          <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
+          <p>
+            Paste your Google Spreadsheet URL in the field above, and if today
+            is a good day, a chart will show up!
+          </p>
+          <p>
+            Once a URL is provided, you will be able to change the grid, colors,
+            labels, legends and other cool stuff
+          </p>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button
+              onClick={() =>
+                dispatch(
+                  setSheetId('1M-c_ImTJ3FJ-D49QMoApeusNg-Ua84qyqDnUFrkm2gg'),
+                )
+              }
+              variant="outline-success"
+            >
+              Run Demo!
+            </Button>
+          </div>
+        </Alert>
+      )}
+      {fetchingData && (
         <div className="sheets-container">
           <div className="loader">
             <PulseLoader
@@ -248,8 +250,6 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
             />
           </div>
         </div>
-      ) : (
-        ''
       )}
     </div>
   );

@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setActiveSheet } from '../actions/sheetData';
+import { resetChartData } from '../actions/chartData';
 
 const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
+  const activateSheet = val => {
+    dispatch(resetChartData());
+    dispatch(setActiveSheet(val));
+  };
+
   const availableSheets = [];
   if (sheetData && sheetData.sheets) {
     sheetData.sheets.sheets.forEach(sheet => {
@@ -17,7 +23,7 @@ const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
             name="sheets"
             id={sheet.properties.title}
             autoComplete="off"
-            onClick={() => dispatch(setActiveSheet(sheet.properties.title))}
+            onClick={() => activateSheet(sheet.properties.title)}
           />
           {sheet.properties.title}
         </label>,

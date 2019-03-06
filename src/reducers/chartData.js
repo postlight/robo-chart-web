@@ -1,4 +1,5 @@
 import {
+  RESET_CHART_DATA,
   SET_CHART_DATA,
   SET_CHART_TYPE,
   SET_CHART_COLORS,
@@ -10,6 +11,21 @@ import {
 
 const chartData = (state = [], action) => {
   switch (action.type) {
+    case RESET_CHART_DATA: {
+      return {
+        ...state,
+        data: [],
+        start: '',
+        end: '',
+        type: 'line',
+        stacked: false,
+        colors: [],
+        color: '',
+        title: '',
+        startFrom: 0,
+        flipAxis: false,
+      };
+    }
     case SET_CHART_DATA: {
       return {
         ...state,

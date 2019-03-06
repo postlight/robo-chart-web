@@ -5,9 +5,14 @@ export const SET_ACTIVE_COLOR = ' SET_ACTIVE_COLOR';
 export const SET_CHART_TITLE = 'SET_CHART_TITLE';
 export const SET_START_FROM = 'SET_START_FROM';
 export const SET_FLIP_AXIS = 'SET_FLIP_AXIS';
+export const RESET_CHART_DATA = 'RESET_CHART_DATA';
 
 export function setChartData(data) {
   return { type: SET_CHART_DATA, data };
+}
+
+export function resetChartData() {
+  return { type: RESET_CHART_DATA };
 }
 
 export function setChartColors(data) {
