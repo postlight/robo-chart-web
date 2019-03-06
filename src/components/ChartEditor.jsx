@@ -70,10 +70,11 @@ const ChartEditor = ({ chartData, dispatch }) => {
 
   const colorPickers = [];
   chartData.colors.forEach((color, index) => {
+    const style = { background: color };
     colorPickers.push(
       <div key={color} className="input-group grid-coord color-input">
         <div className="input-group-prepend">
-          <span className="input-group-text">Color {index + 1}</span>
+          <span className="input-group-text" style={style} />
         </div>
         <input
           type="text"
