@@ -20,18 +20,10 @@ const getChartDimensions = value => {
   return [width, height];
 };
 
-const MyChart = ({
-  data,
-  type,
-  stacked,
-  colors,
-  fetchingData,
-  activeSheet,
-  title,
-  startFrom,
-  flipAxis,
-  dispatch,
-}) => {
+const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
+  const { startFrom, title, flipAxis, type, colors, stacked, data } = cdata;
+  console.log('here');
+
   let chartData = {};
   let datasets = {};
   if (data && data.length > 0) {
@@ -51,7 +43,6 @@ const MyChart = ({
     }
 
     const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis}`;
-    console.log(chartKey);
     let chart;
     switch (type) {
       case 'line':
@@ -266,13 +257,7 @@ const MyChart = ({
 };
 
 const mapStateToProps = state => ({
-  data: state.chartData.data,
-  colors: state.chartData.colors,
-  type: state.chartData.type,
-  stacked: state.chartData.stacked,
-  title: state.chartData.title,
-  startFrom: state.chartData.startFrom,
-  flipAxis: state.chartData.flipAxis,
+  cdata: state.chartData,
   activeSheet: state.sheetData.activeSheet,
   fetchingData: state.appStatus.fetchingData,
 });
