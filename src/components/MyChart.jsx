@@ -62,9 +62,12 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         chartData.options.title.text = chartTitle;
         if (startFrom !== 0) {
           chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
-          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
           chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
           chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
+        } else {
+          chartData.options.scales.xAxes[0].ticks = { beginAtZero: true };
+          chartData.options.scales.yAxes[0].ticks = { beginAtZero: true };
         }
         chart = (
           <Line key={chartKey} data={datasets} options={chartData.options} />
@@ -87,9 +90,12 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         chartData.options.title.text = chartTitle;
         if (startFrom !== 0) {
           chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
-          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
           chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
           chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
+        } else {
+          chartData.options.scales.xAxes[0].ticks = { beginAtZero: true };
+          chartData.options.scales.yAxes[0].ticks = { beginAtZero: true };
         }
         chart = (
           <Bar key={chartKey} data={datasets} options={chartData.options} />
@@ -112,9 +118,12 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         chartData.options.title.text = chartTitle;
         if (startFrom !== 0) {
           chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
-          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
           chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
           chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
+        } else {
+          chartData.options.scales.xAxes[0].ticks = { beginAtZero: true };
+          chartData.options.scales.yAxes[0].ticks = { beginAtZero: true };
         }
         chart = (
           <HorizontalBar
