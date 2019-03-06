@@ -15,6 +15,9 @@ const initialState = {
     stacked: false,
     colors: [],
     color: '',
+    title: '',
+    startFrom: 0,
+    flipAxis: false,
   },
   sheetData: {
     sheetId: '',

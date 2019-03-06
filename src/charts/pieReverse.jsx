@@ -18,6 +18,12 @@ const getPieReverseChartData = (data, semi, colors) => {
       maintainAspectRatio: false,
       circumference,
       rotation,
+      title: {
+        display: true,
+        text: '',
+        fontSize: 20,
+        padding: 20,
+      },
     },
     colors: [],
   };

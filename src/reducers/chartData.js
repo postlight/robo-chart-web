@@ -3,6 +3,9 @@ import {
   SET_CHART_TYPE,
   SET_CHART_COLORS,
   SET_ACTIVE_COLOR,
+  SET_CHART_TITLE,
+  SET_START_FROM,
+  SET_FLIP_AXIS,
 } from '../actions/chartData';
 
 const chartData = (state = [], action) => {
@@ -26,6 +29,24 @@ const chartData = (state = [], action) => {
       return {
         ...state,
         color: action.color,
+      };
+    }
+    case SET_CHART_TITLE: {
+      return {
+        ...state,
+        title: action.title,
+      };
+    }
+    case SET_START_FROM: {
+      return {
+        ...state,
+        startFrom: action.startFrom,
+      };
+    }
+    case SET_FLIP_AXIS: {
+      return {
+        ...state,
+        flipAxis: action.flipAxis,
       };
     }
     case SET_CHART_TYPE: {

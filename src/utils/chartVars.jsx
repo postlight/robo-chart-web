@@ -14,7 +14,7 @@ const options = {
     intersect: false,
   },
   title: {
-    display: false,
+    display: true,
     text: '',
     fontSize: 20,
     padding: 20,
@@ -37,6 +37,7 @@ const options = {
         id: 'x-axis-1',
         ticks: {
           beginAtZero: true,
+          min: 0,
         },
       },
     ],

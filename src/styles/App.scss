@@ -43,9 +43,22 @@ body {
 }
 
 .chart-editor {
-  margin: 0 auto;
   margin-top: $hpadding;
   margin-bottom: $hpadding;
+  .grid-coord {
+    max-width: 250px;
+    float: unset;
+  }
+  .start-from {
+    max-width: 320px;
+  }
+  .apply-button {
+    margin-left: 20px;
+    margin-bottom: 0px;
+  }
+  .apply-subtitle {
+    margin-top: 20px;
+  }
 }
 
 .nav-pills {

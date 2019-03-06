@@ -6,6 +6,7 @@ import { PulseLoader } from 'react-spinners';
 import { getLineChartData } from '../charts/line';
 import { getLineReverseChartData } from '../charts/lineReverse';
 import { getHorizontalBarChartData } from '../charts/horizontalBar';
+import { getHorizontalBarReverseChartData } from '../charts/horizontalBarReverse';
 import { getBarChartData } from '../charts/bar';
 import { getBarReverseChartData } from '../charts/barReverse';
 import { getPieChartData } from '../charts/pie';
@@ -19,7 +20,18 @@ const getChartDimensions = value => {
   return [width, height];
 };
 
-const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
+const MyChart = ({
+  data,
+  type,
+  stacked,
+  colors,
+  fetchingData,
+  activeSheet,
+  title,
+  startFrom,
+  flipAxis,
+  dispatch,
+}) => {
   let chartData = {};
   let datasets = {};
   if (data && data.length > 0) {
@@ -33,20 +45,23 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
       dimensions = getChartDimensions(window.innerWidth);
     }
 
+    let chartTitle = activeSheet;
+    if (title && title.length > 0) {
+      chartTitle = title;
+    }
+
+    const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis}`;
+    console.log(chartKey);
     let chart;
     switch (type) {
-      case 'bar':
-        if (rowCount > columnCount) {
-          chartData = getBarChartData(data, stacked, colors);
-        } else {
-          chartData = getBarReverseChartData(data, stacked, colors);
-        }
-        datasets = { datasets: chartData.datasets, labels: chartData.labels };
-        chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <Bar data={datasets} options={chartData.options} />;
-        break;
       case 'line':
         if (rowCount > columnCount) {
+          if (flipAxis) {
+            chartData = getLineReverseChartData(data, colors);
+          } else {
+            chartData = getLineChartData(data, colors);
+          }
+        } else if (flipAxis) {
           chartData = getLineChartData(data, colors);
         } else {
           chartData = getLineReverseChartData(data, colors);
@@ -54,49 +69,134 @@ const MyChart = ({ data, type, stacked, colors, fetchingData, dispatch }) => {
 
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
         chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <Line data={datasets} options={chartData.options} />;
+        chartData.options.title.text = chartTitle;
+        if (startFrom !== 0) {
+          chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
+          chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
+        }
+        chart = (
+          <Line key={chartKey} data={datasets} options={chartData.options} />
+        );
         break;
-      case 'horizontalBar':
-        chartData = getHorizontalBarChartData(data, colors);
+      case 'bar':
+        if (rowCount > columnCount) {
+          if (flipAxis) {
+            chartData = getBarReverseChartData(data, stacked, colors);
+          } else {
+            chartData = getBarChartData(data, stacked, colors);
+          }
+        } else if (flipAxis) {
+          chartData = getBarChartData(data, stacked, colors);
+        } else {
+          chartData = getBarReverseChartData(data, stacked, colors);
+        }
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
         chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <HorizontalBar data={datasets} options={chartData.options} />;
+        chartData.options.title.text = chartTitle;
+        if (startFrom !== 0) {
+          chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
+          chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
+        }
+        chart = (
+          <Bar key={chartKey} data={datasets} options={chartData.options} />
+        );
+        break;
+      case 'horizontalBar':
+        if (rowCount > columnCount) {
+          if (flipAxis) {
+            chartData = getHorizontalBarReverseChartData(data, stacked, colors);
+          } else {
+            chartData = getHorizontalBarChartData(data, stacked, colors);
+          }
+        } else if (flipAxis) {
+          chartData = getHorizontalBarChartData(data, stacked, colors);
+        } else {
+          chartData = getHorizontalBarReverseChartData(data, stacked, colors);
+        }
+        datasets = { datasets: chartData.datasets, labels: chartData.labels };
+        chartData.options.maintainAspectRatio = maintainAspectRatio;
+        chartData.options.title.text = chartTitle;
+        if (startFrom !== 0) {
+          chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
+          chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
+          chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
+        }
+        chart = (
+          <HorizontalBar
+            key={chartKey}
+            data={datasets}
+            options={chartData.options}
+          />
+        );
         break;
       case 'pie':
-        if (rowCount > columnCount) {
+        if (rowCount > columnCount && !flipAxis) {
           chartData = getPieChartData(data, false, colors);
         } else {
           chartData = getPieReverseChartData(data, false, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <Pie data={chartData.data} options={chartData.options} />;
+        chartData.options.title.text = chartTitle;
+        chart = (
+          <Pie
+            key={chartKey}
+            data={chartData.data}
+            options={chartData.options}
+          />
+        );
         break;
       case 'semi-pie':
-        if (rowCount > columnCount) {
+        if (rowCount > columnCount && !flipAxis) {
           chartData = getPieChartData(data, true, colors);
         } else {
           chartData = getPieReverseChartData(data, true, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <Pie data={chartData.data} options={chartData.options} />;
+        chartData.options.title.text = chartTitle;
+        chart = (
+          <Pie
+            key={chartKey}
+            data={chartData.data}
+            options={chartData.options}
+          />
+        );
         break;
       case 'doughnut':
-        if (rowCount > columnCount) {
+        if (rowCount > columnCount && !flipAxis) {
           chartData = getPieChartData(data, false, colors);
         } else {
           chartData = getPieReverseChartData(data, false, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <Doughnut data={chartData.data} options={chartData.options} />;
+        chartData.options.title.text = chartTitle;
+        chart = (
+          <Doughnut
+            key={chartKey}
+            data={chartData.data}
+            options={chartData.options}
+          />
+        );
         break;
       case 'semi-doughnut':
-        if (rowCount > columnCount) {
+        if (rowCount > columnCount && !flipAxis) {
           chartData = getPieChartData(data, true, colors);
         } else {
           chartData = getPieReverseChartData(data, true, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
-        chart = <Doughnut data={chartData.data} options={chartData.options} />;
+        chartData.options.title.text = chartTitle;
+        chart = (
+          <Doughnut
+            key={chartKey}
+            data={chartData.data}
+            options={chartData.options}
+          />
+        );
         break;
 
       default:
@@ -170,6 +270,10 @@ const mapStateToProps = state => ({
   colors: state.chartData.colors,
   type: state.chartData.type,
   stacked: state.chartData.stacked,
+  title: state.chartData.title,
+  startFrom: state.chartData.startFrom,
+  flipAxis: state.chartData.flipAxis,
+  activeSheet: state.sheetData.activeSheet,
   fetchingData: state.appStatus.fetchingData,
 });
 
