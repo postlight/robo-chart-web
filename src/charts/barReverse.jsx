@@ -47,7 +47,7 @@ const getBarReverseChartData = (data, stacked, colors) => {
 
           chartData.colors.push(color);
         }
-      } else {
+      } else if (chartData.datasets[rowindex - 1]) {
         chartData.datasets[rowindex - 1].data.push(numericalValue);
       }
     });

@@ -85,7 +85,7 @@ const getHorizontalBarReverseChartData = (data, colors) => {
         if (value && value.length > 0) {
           chartData.labels.push(value);
         }
-      } else {
+      } else if (chartData.datasets[colindex - 1]) {
         chartData.datasets[colindex - 1].data.push(numericalValue);
       }
     });

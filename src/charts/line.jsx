@@ -44,13 +44,15 @@ const getLineChartData = (data, colors) => {
         }
       } else if (colindex === 0) {
         chartData.labels.push(value);
-      } else {
+      } else if (chartData.datasets[colindex - 1]) {
         chartData.datasets[colindex - 1].data.push(numericalValue);
       }
     });
     let i = element.length;
     for (; i < columnCount; ) {
-      chartData.datasets[i - 1].data.push(0);
+      if (chartData.datasets[i - 1]) {
+        chartData.datasets[i - 1].data.push(0);
+      }
       i += 1;
     }
   });

@@ -48,9 +48,10 @@ const getPieChartData = (data, semi, colors) => {
           color = randomColor();
         }
         colorIndex += 1;
-        chartData.data.datasets[colindex - 1].backgroundColor.push(color);
-        chartData.data.datasets[colindex - 1].data.push(numericalValue);
-
+        if (chartData.data.datasets[colindex - 1]) {
+          chartData.data.datasets[colindex - 1].backgroundColor.push(color);
+          chartData.data.datasets[colindex - 1].data.push(numericalValue);
+        }
         chartData.colors.push(color);
       }
     });

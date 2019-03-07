@@ -48,9 +48,10 @@ const getPieReverseChartData = (data, semi, colors) => {
           color = randomColor();
         }
         colorIndex += 1;
-        chartData.data.datasets[rowindex - 1].backgroundColor.push(color);
-        chartData.data.datasets[rowindex - 1].data.push(numericalValue);
-
+        if (chartData.data.datasets[rowindex - 1]) {
+          chartData.data.datasets[rowindex - 1].backgroundColor.push(color);
+          chartData.data.datasets[rowindex - 1].data.push(numericalValue);
+        }
         chartData.colors.push(color);
       }
     });
