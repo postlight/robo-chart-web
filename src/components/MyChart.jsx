@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Line, Bar, HorizontalBar, Pie, Doughnut } from 'react-chartjs-2';
 import { Alert, Button } from 'react-bootstrap';
 import { PulseLoader } from 'react-spinners';
+import domtoimage from 'dom-to-image';
 import { getLineChartData } from '../charts/line';
 import { getLineReverseChartData } from '../charts/lineReverse';
 import { getHorizontalBarChartData } from '../charts/horizontalBar';
@@ -20,6 +21,17 @@ const getChartDimensions = value => {
 };
 
 const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
+  const saveImagePng = () => {
+    domtoimage
+      .toPng(document.getElementsByClassName('chartjs-render-monitor')[0])
+      .then(function(dataUrl) {
+        const link = document.createElement('a');
+        link.download = 'my-chart.png';
+        link.href = dataUrl;
+        link.click();
+      });
+  };
+
   const { startFrom, title, flipAxis, type, colors, stacked, data } = cdata;
 
   let chartData = {};
@@ -40,7 +52,7 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
       chartTitle = title;
     }
 
-    const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis}`;
+    const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis} ${stacked}`;
     let chart;
     switch (type) {
       case 'line':
@@ -231,8 +243,20 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
     }
 
     return (
-      <div className="in-container sheets-container shadow" style={style}>
-        {chart}
+      <div>
+        <div className="in-container sheets-container shadow " style={style}>
+          <div className="save-chart">
+            <Button
+              onClick={() => {
+                saveImagePng();
+              }}
+              variant="outline-secondary"
+            >
+              save
+            </Button>
+          </div>
+          {chart}
+        </div>
       </div>
     );
   }

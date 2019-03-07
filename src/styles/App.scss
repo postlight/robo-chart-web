@@ -61,6 +61,18 @@ body {
   }
 }
 
+.save-chart {
+  position: absolute;
+  margin-left: 10px;
+  .btn {
+    padding: 0px 5px;
+  }
+}
+
+.chartjs-render-monitor {
+  background-color: #ffffff00;
+}
+
 .nav-pills {
   .nav-link.active {
     background: $active;

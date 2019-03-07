@@ -8,6 +8,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
     "chartjs-plugin-annotation": "^0.5.7",
+    "dom-to-image": "^2.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.16.0",
