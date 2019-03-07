@@ -24,7 +24,7 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
   const saveImagePng = () => {
     domtoimage
       .toPng(document.getElementsByClassName('chartjs-render-monitor')[0])
-      .then(function(dataUrl) {
+      .then(dataUrl => {
         const link = document.createElement('a');
         link.download = 'my-chart.png';
         link.href = dataUrl;
