@@ -43,7 +43,7 @@ const options = {
   },
 };
 
-const getHorizontalBarChartData = (data, colors) => {
+const getHorizontalBarChartData = (data, stacked, colors) => {
   const chartData = {
     labels: [],
     datasets: [],
@@ -67,7 +67,6 @@ const getHorizontalBarChartData = (data, colors) => {
         if (value && value.length > 0) {
           const object = { data: [] };
           const color = colors[colorIndex];
-          console.log(color);
           colorIndex += 1;
           object.borderColor = color;
           object.backgroundColor = color;

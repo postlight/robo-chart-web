@@ -35,6 +35,9 @@ const getPieReverseChartData = (data, semi, colors) => {
           const object = { data: [], backgroundColor: [], label: '' };
           object.label = value;
           chartData.data.datasets.push(object);
+          if (chartData.data.labels.length === 0) {
+            chartData.data.labels.push(value);
+          }
         }
       } else if (rowindex === 0) {
         chartData.data.labels.push(value);
@@ -50,6 +53,14 @@ const getPieReverseChartData = (data, semi, colors) => {
     });
   });
 
+  const finalDatasets = [];
+  chartData.data.datasets.forEach(dataset => {
+    if (dataset.data.length > 0) {
+      finalDatasets.push(dataset);
+    }
+  });
+
+  chartData.data.datasets = finalDatasets;
   return chartData;
 };
 

@@ -50,6 +50,15 @@ const getPieChartData = (data, semi, colors) => {
     });
   });
 
+  const finalDatasets = [];
+  chartData.data.datasets.forEach(dataset => {
+    if (dataset.data.length > 0) {
+      finalDatasets.push(dataset);
+    }
+  });
+
+  chartData.data.datasets = finalDatasets;
+
   return chartData;
 };
 

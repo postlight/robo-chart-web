@@ -133,10 +133,16 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         );
         break;
       case 'pie':
-        if (rowCount > columnCount && !flipAxis) {
-          chartData = getPieChartData(data, false, colors);
-        } else {
+        if (rowCount > columnCount) {
+          if (!flipAxis) {
+            chartData = getPieChartData(data, false, colors);
+          } else {
+            chartData = getPieReverseChartData(data, false, colors);
+          }
+        } else if (!flipAxis) {
           chartData = getPieReverseChartData(data, false, colors);
+        } else {
+          chartData = getPieChartData(data, false, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
         chartData.options.title.text = chartTitle;
@@ -149,10 +155,16 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         );
         break;
       case 'semi-pie':
-        if (rowCount > columnCount && !flipAxis) {
-          chartData = getPieChartData(data, true, colors);
-        } else {
+        if (rowCount > columnCount) {
+          if (!flipAxis) {
+            chartData = getPieChartData(data, true, colors);
+          } else {
+            chartData = getPieReverseChartData(data, true, colors);
+          }
+        } else if (!flipAxis) {
           chartData = getPieReverseChartData(data, true, colors);
+        } else {
+          chartData = getPieChartData(data, true, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
         chartData.options.title.text = chartTitle;
@@ -165,10 +177,16 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         );
         break;
       case 'doughnut':
-        if (rowCount > columnCount && !flipAxis) {
-          chartData = getPieChartData(data, false, colors);
-        } else {
+        if (rowCount > columnCount) {
+          if (!flipAxis) {
+            chartData = getPieChartData(data, false, colors);
+          } else {
+            chartData = getPieReverseChartData(data, false, colors);
+          }
+        } else if (!flipAxis) {
           chartData = getPieReverseChartData(data, false, colors);
+        } else {
+          chartData = getPieChartData(data, false, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
         chartData.options.title.text = chartTitle;
@@ -181,10 +199,16 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
         );
         break;
       case 'semi-doughnut':
-        if (rowCount > columnCount && !flipAxis) {
-          chartData = getPieChartData(data, true, colors);
-        } else {
+        if (rowCount > columnCount) {
+          if (!flipAxis) {
+            chartData = getPieChartData(data, true, colors);
+          } else {
+            chartData = getPieReverseChartData(data, true, colors);
+          }
+        } else if (!flipAxis) {
           chartData = getPieReverseChartData(data, true, colors);
+        } else {
+          chartData = getPieChartData(data, true, colors);
         }
         chartData.options.maintainAspectRatio = maintainAspectRatio;
         chartData.options.title.text = chartTitle;
