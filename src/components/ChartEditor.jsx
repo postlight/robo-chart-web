@@ -96,7 +96,16 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
   };
 
   const colorPickers = [];
-  chartData.colors.forEach((color, index) => {
+
+  let max = 0;
+  chartData.data.forEach(dataset => {
+    if (dataset.length > max) {
+      max = dataset.length;
+    }
+  });
+
+  for (let i = 0; i < max; i += 1) {
+    const color = chartData.colors[i];
     const style = { background: color };
     colorPickers.push(
       <div key={color} className="input-group grid-coord color-input">
@@ -107,12 +116,12 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
           type="text"
           className="form-control"
           defaultValue={color}
-          onFocus={evt => handleColorFocus(evt.target.value, index, dispatch)}
+          onFocus={evt => handleColorFocus(evt.target.value, i, dispatch)}
           onChange={evt => handleColorChange(evt.target.value, dispatch)}
         />
       </div>,
     );
-  });
+  }
 
   let title = activeSheet;
   if (chartData.title && chartData.title.length > 0) {

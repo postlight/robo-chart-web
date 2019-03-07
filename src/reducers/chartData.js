@@ -9,6 +9,8 @@ import {
   SET_FLIP_AXIS,
 } from '../actions/chartData';
 
+import { COLORS } from '../constants';
+
 const chartData = (state = [], action) => {
   switch (action.type) {
     case RESET_CHART_DATA: {
@@ -19,7 +21,7 @@ const chartData = (state = [], action) => {
         end: '',
         type: 'line',
         stacked: false,
-        colors: [],
+        colors: JSON.parse(localStorage.getItem(COLORS)),
         color: '',
         title: '',
         startFrom: 0,
@@ -35,6 +37,7 @@ const chartData = (state = [], action) => {
       };
     }
     case SET_CHART_COLORS: {
+      localStorage.setItem(COLORS, JSON.stringify(action.data.colors));
       return {
         ...state,
         colors: action.data.colors,

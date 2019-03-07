@@ -1,5 +1,3 @@
-import { randomColor } from 'randomcolor';
-
 const getPieChartData = (data, semi, colors) => {
   let circumference = 2 * Math.PI;
   let rotation = -Math.PI / 2;
@@ -41,12 +39,7 @@ const getPieChartData = (data, semi, colors) => {
       } else if (colindex === 0) {
         chartData.data.labels.push(value);
       } else {
-        let color;
-        if (colorIndex < colors.length) {
-          color = colors[colorIndex];
-        } else {
-          color = randomColor();
-        }
+        const color = colors[colorIndex];
         colorIndex += 1;
         if (chartData.data.datasets[colindex - 1]) {
           chartData.data.datasets[colindex - 1].backgroundColor.push(color);

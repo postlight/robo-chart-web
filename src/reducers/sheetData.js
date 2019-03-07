@@ -8,9 +8,13 @@ import {
 const chartData = (state = [], action) => {
   switch (action.type) {
     case SET_SHEET_DATA: {
+      const sheetTitle = action.data.sheets[0].properties.title;
       return {
         ...state,
         sheets: action.data,
+        activeSheet: sheetTitle,
+        start: '',
+        end: '',
       };
     }
     case SET_ACTIVE_SHEET: {

@@ -1,4 +1,3 @@
-import { randomColor } from 'randomcolor';
 import { options } from '../utils/chartVars';
 
 const getBarReverseChartData = (data, stacked, colors) => {
@@ -27,12 +26,7 @@ const getBarReverseChartData = (data, stacked, colors) => {
       } else if (colindex === 0) {
         if (value && value.length > 0) {
           const object = { data: [] };
-          let color;
-          if (colorIndex < colors.length) {
-            color = colors[colorIndex];
-          } else {
-            color = randomColor();
-          }
+          const color = colors[colorIndex];
           colorIndex += 1;
           object.borderColor = color;
           object.backgroundColor = color;

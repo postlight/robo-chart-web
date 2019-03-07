@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { API, TOKEN } from '../constants';
 import ChartEditor from '../components/ChartEditor';
-import { setSheetData, setActiveSheet } from '../actions/sheetData';
+import { setSheetData } from '../actions/sheetData';
 import { setFetchingData } from '../actions/appStatus';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
@@ -66,10 +66,6 @@ class Home extends Component {
 
     if (res.data && res.data.sheets) {
       dispatch(setSheetData(res.data));
-      if (res.data.sheets.length > 0) {
-        const sheetTitle = res.data.sheets[0].properties.title;
-        dispatch(setActiveSheet(sheetTitle));
-      }
     }
 
     if (res.data && res.data.values) {

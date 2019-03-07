@@ -12,7 +12,6 @@ import { getBarReverseChartData } from '../charts/barReverse';
 import { getPieChartData } from '../charts/pie';
 import { getPieReverseChartData } from '../charts/pieReverse';
 import { setSheetId } from '../actions/sheetData';
-import { setChartColors } from '../actions/chartData';
 
 const getChartDimensions = value => {
   const width = (100 * value) / 100;
@@ -200,13 +199,6 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
 
       default:
         break;
-    }
-
-    if (colors.length !== chartData.colors.length) {
-      const colorsData = {
-        colors: chartData.colors,
-      };
-      dispatch(setChartColors(colorsData));
     }
 
     let style = {};

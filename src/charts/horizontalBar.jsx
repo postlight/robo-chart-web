@@ -1,5 +1,3 @@
-import { randomColor } from 'randomcolor';
-
 const options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -68,12 +66,8 @@ const getHorizontalBarChartData = (data, colors) => {
       } else if (colindex === 0) {
         if (value && value.length > 0) {
           const object = { data: [] };
-          let color;
-          if (colorIndex < colors.length) {
-            color = colors[colorIndex];
-          } else {
-            color = randomColor();
-          }
+          const color = colors[colorIndex];
+          console.log(color);
           colorIndex += 1;
           object.borderColor = color;
           object.backgroundColor = color;
