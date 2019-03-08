@@ -1,5 +1,6 @@
 import {
   SET_SHEET_DATA,
+  RESET_SHEET_DATA,
   SET_SHEET_ID,
   SET_ACTIVE_SHEET,
   SET_START_AND_END,
@@ -11,8 +12,18 @@ const chartData = (state = [], action) => {
       const sheetTitle = action.data.sheets[0].properties.title;
       return {
         ...state,
-        sheets: action.data,
+        data: action.data,
         activeSheet: sheetTitle,
+        start: '',
+        end: '',
+      };
+    }
+    case RESET_SHEET_DATA: {
+      return {
+        ...state,
+        sheetId: '',
+        data: {},
+        activeSheet: '',
         start: '',
         end: '',
       };

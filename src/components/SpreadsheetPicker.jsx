@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setSheetId } from '../actions/sheetData';
+import { setSheetId, resetSheetData } from '../actions/sheetData';
 
 function validate(url, dispatch) {
   const regex = /\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/gi;
@@ -8,6 +8,8 @@ function validate(url, dispatch) {
   if (matches && matches.length > 0) {
     const parts = matches[0].split('/');
     const sheetId = parts[parts.length - 1];
+
+    dispatch(resetSheetData());
     dispatch(setSheetId(sheetId));
   }
 }

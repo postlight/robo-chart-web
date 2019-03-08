@@ -37,7 +37,7 @@ const MyChart = ({ cdata, activeSheet, appStatus, dispatch }) => {
 
   let chartData = {};
   let datasets = {};
-  if (data && data.length > 0) {
+  if (data && data.length > 0 && !appStatus.fetchingData) {
     const columnCount = data[0].length;
     const rowCount = data.length;
 
