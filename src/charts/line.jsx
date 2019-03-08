@@ -1,4 +1,4 @@
-import { options } from '../utils/chartVars';
+import { options } from '../utils/lineOptions';
 
 const getLineChartData = (data, colors) => {
   const chartData = {
@@ -30,7 +30,6 @@ const getLineChartData = (data, colors) => {
           object.pointHoverBackgroundColor = color;
           object.pointHoverBorderColor = color;
           object.fill = false;
-          object.yAxisID = 'y-axis-1';
           object.label = value;
           chartData.datasets.push(object);
 

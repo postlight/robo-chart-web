@@ -1,30 +1,19 @@
-const getPieChartData = (data, semi, colors) => {
-  let circumference = 2 * Math.PI;
-  let rotation = -Math.PI / 2;
-  if (semi) {
-    circumference = Math.PI;
-    rotation = -Math.PI;
-  }
+import { options } from '../utils/pieOptions';
 
+const getPieChartData = (data, semi, colors) => {
   const chartData = {
     data: {
       datasets: [],
       labels: [],
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      circumference,
-      rotation,
-      title: {
-        display: true,
-        text: '',
-        fontSize: 20,
-        padding: 20,
-      },
-    },
+    options,
     colors: [],
   };
+
+  if (semi) {
+    chartData.options.circumference = Math.PI;
+    chartData.options.rotation = -Math.PI;
+  }
 
   let colorIndex = 0;
   data.forEach((element, rowindex) => {

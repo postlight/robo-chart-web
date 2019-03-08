@@ -1,4 +1,4 @@
-import { options } from '../utils/chartVars';
+import { options } from '../utils/lineOptions';
 
 const getBarReverseChartData = (data, stacked, colors) => {
   const chartData = {
@@ -34,8 +34,6 @@ const getBarReverseChartData = (data, stacked, colors) => {
           object.pointBackgroundColor = color;
           object.pointHoverBackgroundColor = color;
           object.pointHoverBorderColor = color;
-          object.fill = false;
-          object.yAxisID = 'y-axis-1';
           object.label = value;
           chartData.datasets.push(object);
 

@@ -13,6 +13,7 @@ import { getBarReverseChartData } from '../charts/barReverse';
 import { getPieChartData } from '../charts/pie';
 import { getPieReverseChartData } from '../charts/pieReverse';
 import { setSheetId } from '../actions/sheetData';
+import { DEMO_SHEETID } from '../constants';
 
 const getChartDimensions = value => {
   const width = (100 * value) / 100;
@@ -20,7 +21,7 @@ const getChartDimensions = value => {
   return [width, height];
 };
 
-const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
+const MyChart = ({ cdata, activeSheet, appStatus, dispatch }) => {
   const saveImagePng = () => {
     domtoimage
       .toPng(document.getElementsByClassName('chartjs-render-monitor')[0])
@@ -263,7 +264,7 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
 
   return (
     <div className="sheets-container shadow">
-      {!fetchingData && (
+      {!appStatus.fetchingData && (
         <Alert variant="success">
           <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
           <p>
@@ -277,11 +278,7 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
           <hr />
           <div className="d-flex justify-content-end">
             <Button
-              onClick={() =>
-                dispatch(
-                  setSheetId('1M-c_ImTJ3FJ-D49QMoApeusNg-Ua84qyqDnUFrkm2gg'),
-                )
-              }
+              onClick={() => dispatch(setSheetId(DEMO_SHEETID))}
               variant="outline-success"
             >
               Run Demo!
@@ -289,12 +286,27 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
           </div>
         </Alert>
       )}
-      {fetchingData && (
+      {appStatus.authError && (
+        <Alert variant="danger">
+          <Alert.Heading>Oh snap!</Alert.Heading>
+          <p>
+            It looks like your Spreadsheet is private, please change its access
+            to <strong>Anyone with the link</strong> and then try again
+          </p>
+        </Alert>
+      )}
+      {appStatus.error && (
+        <Alert variant="danger">
+          <Alert.Heading>Oh snap!</Alert.Heading>
+          <p>It looks like there is a connection issue, please try again.</p>
+        </Alert>
+      )}
+      {appStatus.fetchingData && (
         <div className="sheets-container">
           <div className="loader">
             <PulseLoader
               color="#5c646d"
-              loading={fetchingData}
+              loading={appStatus.fetchingData}
               className="loader"
             />
           </div>
@@ -307,7 +319,7 @@ const MyChart = ({ cdata, activeSheet, fetchingData, dispatch }) => {
 const mapStateToProps = state => ({
   cdata: state.chartData,
   activeSheet: state.sheetData.activeSheet,
-  fetchingData: state.appStatus.fetchingData,
+  appStatus: state.appStatus,
 });
 
 export default connect(mapStateToProps)(MyChart);

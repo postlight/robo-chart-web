@@ -1,4 +1,2 @@
-export const TOKEN = '?key=AIzaSyDsT6RtrXS3H0HbYhJcS6YGjbwy7K3zlmU';
-export const API = 'https://sheets.googleapis.com/v4/spreadsheets/';
-
+export const DEMO_SHEETID = '1M-c_ImTJ3FJ-D49QMoApeusNg-Ua84qyqDnUFrkm2gg';
 export const COLORS = 'colors';

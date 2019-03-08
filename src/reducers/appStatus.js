@@ -1,11 +1,31 @@
-import { SET_FETCHING_DATA } from '../actions/appStatus';
+import {
+  SET_FETCHING_DATA,
+  SET_AUTH_ERROR,
+  SET_ERROR,
+} from '../actions/appStatus';
 
 const appStatus = (state = [], action) => {
   switch (action.type) {
     case SET_FETCHING_DATA: {
       return {
         ...state,
+        authError: false,
+        error: false,
         fetchingData: action.fetchingData,
+      };
+    }
+    case SET_AUTH_ERROR: {
+      return {
+        ...state,
+        fetchingData: false,
+        authError: action.authError,
+      };
+    }
+    case SET_ERROR: {
+      return {
+        ...state,
+        fetchingData: false,
+        error: action.error,
       };
     }
     default:

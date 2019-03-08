@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { API, TOKEN } from '../constants';
 import ChartEditor from '../components/ChartEditor';
-import { setSheetData } from '../actions/sheetData';
-import { setFetchingData } from '../actions/appStatus';
+import { setSheetData, setSheetId } from '../actions/sheetData';
+import { setFetchingData, setAuthError, setError } from '../actions/appStatus';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
 import MyChart from '../components/MyChart';
@@ -36,14 +35,19 @@ class Home extends Component {
 
   runQuery() {
     const { sheetId, data, dispatch } = this.props;
+    const { REACT_APP_TOKEN, REACT_APP_API } = process.env;
     if (sheetId && sheetId.length > 5) {
-      let url = `${API}${sheetId}${TOKEN}`;
+      let url = `${REACT_APP_API}${sheetId}${REACT_APP_TOKEN}`;
       if (data.activeSheet.length > 0) {
-        url = `${API}${sheetId}/values/${data.activeSheet}${TOKEN}`;
+        url = `${REACT_APP_API}${sheetId}/values/${
+          data.activeSheet
+        }${REACT_APP_TOKEN}`;
       }
       if (data.start.length > 0 && data.end.length > 0) {
         const grid = `!${data.start}:${data.end}`;
-        url = `${API}${sheetId}/values/${data.activeSheet}${grid}${TOKEN}`;
+        url = `${REACT_APP_API}${sheetId}/values/${
+          data.activeSheet
+        }${grid}${REACT_APP_TOKEN}`;
       }
       // eslint-disable-next-line no-console
       console.log(`RQ: Home ${url}`);
@@ -56,7 +60,12 @@ class Home extends Component {
           this.process(res);
         })
         .catch(error => {
-          dispatch(setFetchingData(false));
+          if (error.response && error.response.status === 403) {
+            dispatch(setAuthError(true));
+          } else {
+            dispatch(setError(true));
+          }
+          dispatch(setSheetId(''));
         });
     }
   }

@@ -1,4 +1,4 @@
-import { options } from '../utils/chartVars';
+import { options } from '../utils/lineOptions';
 
 const getBarChartData = (data, stacked, colors) => {
   const chartData = {
@@ -30,8 +30,6 @@ const getBarChartData = (data, stacked, colors) => {
           object.pointBackgroundColor = color;
           object.pointHoverBackgroundColor = color;
           object.pointHoverBorderColor = color;
-          object.fill = false;
-          object.yAxisID = 'y-axis-1';
           object.label = value;
           chartData.datasets.push(object);
 
