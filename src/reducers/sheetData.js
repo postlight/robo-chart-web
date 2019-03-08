@@ -12,7 +12,7 @@ const chartData = (state = [], action) => {
       const sheetTitle = action.data.sheets[0].properties.title;
       return {
         ...state,
-        data: action.data,
+        sheets: action.data,
         activeSheet: sheetTitle,
         start: '',
         end: '',

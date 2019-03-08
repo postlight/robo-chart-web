@@ -24,6 +24,7 @@ const generateColors = num => {
 const initialState = {
   chartData: {
     data: [],
+    sheets: [],
     start: '',
     end: '',
     type: 'line',

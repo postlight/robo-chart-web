@@ -66,8 +66,9 @@ body {
 }
 
 .save-chart {
-  position: absolute;
-  margin-left: 10px;
+  position: relative;
+  float: right;
+  margin-right: 10px;
   .btn {
     padding: 0px 5px;
   }
