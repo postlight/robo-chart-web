@@ -70,7 +70,10 @@ body {
   float: right;
   margin-right: 10px;
   .btn {
-    padding: 0px 5px;
+    padding: 5px 10px;
+    background-color: $green;
+    border: 0;
+    color: white;
   }
 }
 

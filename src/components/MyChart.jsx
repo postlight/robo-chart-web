@@ -253,7 +253,7 @@ const MyChart = ({ cdata, activeSheet, appStatus, dispatch }) => {
               }}
               variant="outline-secondary"
             >
-              save
+              SAVE
             </Button>
           </div>
           {chart}
