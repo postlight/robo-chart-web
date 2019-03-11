@@ -4,7 +4,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: $backgroud;
-  font-family: Helvetica, Times, Georgia, 'Times New Roman', serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
   color: $font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -62,7 +64,24 @@ body {
 }
 
 .footer {
-  margin-bottom: 50px !important;
+  color: $footer-color;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  background: $footer-background;
+  text-align: center;
+  border-radius: 5px;
+  span {
+    display: inline-block;
+    font-size: 17px;
+  }
+  .footer-gif {
+    display: block;
+    padding-top: 10px;
+    width: 204px;
+    margin: 0 auto;
+  }
 }
 
 .save-chart {

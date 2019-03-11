@@ -6,13 +6,13 @@ import '../styles/App.scss';
 
 const App = () => {
   return (
-    <div>
+    <React.Fragment>
       <Switch>
         <Route exact path="/" component={Home} />
         <Redirect to="/" />
       </Switch>
       <Footer />
-    </div>
+    </React.Fragment>
   );
 };
 
