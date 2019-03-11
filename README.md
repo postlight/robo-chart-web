@@ -6,10 +6,17 @@ Transform Google sheets to pretty charts!
 
 ## How to Install
 
-Clone the repository and run the following commands:
+1. Clone the repository:
 
-    > npm install
-    > npm start
+   > git clone https://github.com/postlight/smart-chart.git
+
+2. Generate a Google API Key: https://console.cloud.google.com/apis/credentials
+3. Rename `.env.sample` to `.env` and paste the generated API Key in the `REACT_APP_TOKEN` field
+4. run the following commands:
+   ```sh
+   npm install
+   npm start
+   ```
 
 Once setup is done, the app will be available on http://localhost:3000
 
@@ -43,3 +50,7 @@ Unless it is explicitly stated otherwise, any contribution intentionally submitt
 ---
 
 🔬 A Labs project from your friends at [Postlight](https://postlight.com/labs)
+
+```
+
+```
