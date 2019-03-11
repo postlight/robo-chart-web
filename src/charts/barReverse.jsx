@@ -1,4 +1,5 @@
-import { options } from '../utils/lineOptions';
+import { randomColor } from 'randomcolor';
+import options from '../utils/lineOptions';
 
 /**
  * Returns chart data specific for Bar chart type with reversed axis processing
@@ -33,7 +34,10 @@ const getBarReverseChartData = (data, stacked, colors) => {
       } else if (colindex === 0) {
         if (value && value.length > 0) {
           const object = { data: [] };
-          const color = colors[colorIndex];
+          let color = colors[colorIndex];
+          if (!colors || colorIndex >= colors.length) {
+            color = randomColor();
+          }
           colorIndex += 1;
           object.borderColor = color;
           object.backgroundColor = color;
@@ -63,4 +67,4 @@ const getBarReverseChartData = (data, stacked, colors) => {
   return chartData;
 };
 
-export { getBarReverseChartData };
+export default getBarReverseChartData;

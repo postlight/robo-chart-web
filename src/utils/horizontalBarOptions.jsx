@@ -44,4 +44,4 @@ const options = {
   },
 };
 
-exports.options = options;
+export default options;

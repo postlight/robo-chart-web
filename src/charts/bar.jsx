@@ -1,4 +1,5 @@
-import { options } from '../utils/lineOptions';
+import { randomColor } from 'randomcolor';
+import options from '../utils/lineOptions';
 
 /**
  * Returns chart data specific for Bar chart type
@@ -29,7 +30,10 @@ const getBarChartData = (data, stacked, colors) => {
       if (rowindex === 0) {
         if (value && value.length > 0) {
           const object = { data: [] };
-          const color = colors[colorIndex];
+          let color = colors[colorIndex];
+          if (!colors || colorIndex >= colors.length) {
+            color = randomColor();
+          }
           colorIndex += 1;
           object.borderColor = color;
           object.backgroundColor = color;
@@ -69,4 +73,4 @@ const getBarChartData = (data, stacked, colors) => {
   return chartData;
 };
 
-export { getBarChartData };
+export default getBarChartData;

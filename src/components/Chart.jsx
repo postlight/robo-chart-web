@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Line, Bar, HorizontalBar, Pie, Doughnut } from 'react-chartjs-2';
 import { Button } from 'react-bootstrap';
 import domtoimage from 'dom-to-image';
-import { getLineChartData } from '../charts/line';
-import { getLineReverseChartData } from '../charts/lineReverse';
-import { getHorizontalBarChartData } from '../charts/horizontalBar';
-import { getHorizontalBarReverseChartData } from '../charts/horizontalBarReverse';
-import { getBarChartData } from '../charts/bar';
-import { getBarReverseChartData } from '../charts/barReverse';
-import { getPieChartData } from '../charts/pie';
-import { getPieReverseChartData } from '../charts/pieReverse';
+import getLineChartData from '../charts/line';
+import getLineReverseChartData from '../charts/lineReverse';
+import getHorizontalBarChartData from '../charts/horizontalBar';
+import getHorizontalBarReverseChartData from '../charts/horizontalBarReverse';
+import getBarChartData from '../charts/bar';
+import getBarReverseChartData from '../charts/barReverse';
+import getPieChartData from '../charts/pie';
+import getPieReverseChartData from '../charts/pieReverse';
 
 /**
  * Chart component

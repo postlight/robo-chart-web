@@ -1,4 +1,5 @@
-import { options } from '../utils/horizontalBarOptions';
+import { randomColor } from 'randomcolor';
+import options from '../utils/horizontalBarOptions';
 
 /**
  * Returns chart data specific for Horizontal Bar chart type with reversed axis processing
@@ -25,7 +26,10 @@ const getHorizontalBarReverseChartData = (data, colors) => {
       if (rowindex === 0) {
         if (value && value.length > 0) {
           const object = { data: [] };
-          const color = colors[colorIndex];
+          let color = colors[colorIndex];
+          if (!colors || colorIndex >= colors.length) {
+            color = randomColor();
+          }
           colorIndex += 1;
           object.borderColor = color;
           object.backgroundColor = color;
@@ -49,4 +53,4 @@ const getHorizontalBarReverseChartData = (data, colors) => {
   return chartData;
 };
 
-export { getHorizontalBarReverseChartData };
+export default getHorizontalBarReverseChartData;

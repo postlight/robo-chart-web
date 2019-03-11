@@ -7,7 +7,7 @@ import { setFetchingData, setAuthError, setError } from '../actions/appStatus';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
 import ChartView from '../components/ChartView';
-import { processSpreadsheet } from '../utils/processSpreadsheet';
+import processSpreadsheet from '../utils/processSpreadsheet';
 
 /**
  * Main screen

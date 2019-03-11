@@ -66,4 +66,4 @@ const processSpreadsheet = (values, startr = 0, startc = 0) => {
   return processedData;
 };
 
-export { processSpreadsheet };
+export default processSpreadsheet;

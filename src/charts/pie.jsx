@@ -1,4 +1,5 @@
-import { options } from '../utils/pieOptions';
+import { randomColor } from 'randomcolor';
+import options from '../utils/pieOptions';
 
 /**
  * Returns chart data specific for Pie chart type
@@ -35,7 +36,10 @@ const getPieChartData = (data, semi, colors) => {
       } else if (colindex === 0) {
         chartData.data.labels.push(value);
       } else {
-        const color = colors[colorIndex];
+        let color = colors[colorIndex];
+        if (!colors || colorIndex >= colors.length) {
+          color = randomColor();
+        }
         colorIndex += 1;
         if (chartData.data.datasets[colindex - 1]) {
           chartData.data.datasets[colindex - 1].backgroundColor.push(color);
@@ -58,4 +62,4 @@ const getPieChartData = (data, semi, colors) => {
   return chartData;
 };
 
-export { getPieChartData };
+export default getPieChartData;
