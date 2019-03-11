@@ -1,5 +1,11 @@
 import { options } from '../utils/lineOptions';
 
+/**
+ * Returns chart data specific for Line chart type
+ *
+ * @param {object} data chart data
+ * @param {array} colors array of colors used to present data
+ */
 const getLineChartData = (data, colors) => {
   const chartData = {
     labels: [],

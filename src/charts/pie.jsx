@@ -1,5 +1,12 @@
 import { options } from '../utils/pieOptions';
 
+/**
+ * Returns chart data specific for Pie chart type
+ *
+ * @param {object} data chart data
+ * @param {boolean} semi true or false
+ * @param {array} colors array of colors used to present data
+ */
 const getPieChartData = (data, semi, colors) => {
   const chartData = {
     data: {

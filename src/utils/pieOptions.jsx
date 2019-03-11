@@ -1,3 +1,4 @@
+// predefined chart options for pie charts
 const options = {
   responsive: true,
   maintainAspectRatio: false,

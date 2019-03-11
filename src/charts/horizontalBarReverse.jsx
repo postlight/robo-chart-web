@@ -1,6 +1,12 @@
 import { options } from '../utils/horizontalBarOptions';
 
-const getHorizontalBarReverseChartData = (data, stacked, colors) => {
+/**
+ * Returns chart data specific for Horizontal Bar chart type with reversed axis processing
+ *
+ * @param {object} data chart data
+ * @param {array} colors array of colors used to present data
+ */
+const getHorizontalBarReverseChartData = (data, colors) => {
   const chartData = {
     labels: [],
     datasets: [],

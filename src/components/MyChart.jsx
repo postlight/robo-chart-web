@@ -15,13 +15,24 @@ import { getPieReverseChartData } from '../charts/pieReverse';
 import { setSheetId } from '../actions/sheetData';
 import { DEMO_SHEETID } from '../constants';
 
-const getChartDimensions = value => {
-  const width = (100 * value) / 100;
+/**
+ * Support small screens
+ *
+ * @param {number} screenWidth screen width
+ */
+const getSmallScreenChartDimensions = screenWidth => {
+  const width = (100 * screenWidth) / 100;
   const height = (95 * width) / 100;
   return [width, height];
 };
 
+/**
+ * MyChart component
+ */
 const MyChart = ({ cdata, activeSheet, appStatus, dispatch }) => {
+  /**
+   * Export image to PNG with transperancy
+   */
   const saveImagePng = () => {
     domtoimage
       .toPng(document.getElementsByClassName('chartjs-render-monitor')[0])
@@ -45,7 +56,7 @@ const MyChart = ({ cdata, activeSheet, appStatus, dispatch }) => {
     let maintainAspectRatio = true;
     if (window.innerWidth < 900) {
       maintainAspectRatio = false;
-      dimensions = getChartDimensions(window.innerWidth);
+      dimensions = getSmallScreenChartDimensions(window.innerWidth);
     }
 
     let chartTitle = activeSheet;
@@ -116,14 +127,14 @@ const MyChart = ({ cdata, activeSheet, appStatus, dispatch }) => {
       case 'horizontalBar':
         if (rowCount > columnCount) {
           if (flipAxis) {
-            chartData = getHorizontalBarReverseChartData(data, stacked, colors);
+            chartData = getHorizontalBarReverseChartData(data, colors);
           } else {
-            chartData = getHorizontalBarChartData(data, stacked, colors);
+            chartData = getHorizontalBarChartData(data, colors);
           }
         } else if (flipAxis) {
-          chartData = getHorizontalBarChartData(data, stacked, colors);
+          chartData = getHorizontalBarChartData(data, colors);
         } else {
-          chartData = getHorizontalBarReverseChartData(data, stacked, colors);
+          chartData = getHorizontalBarReverseChartData(data, colors);
         }
         datasets = { datasets: chartData.datasets, labels: chartData.labels };
         chartData.options.maintainAspectRatio = maintainAspectRatio;

@@ -1,3 +1,13 @@
+/**
+ * Spreadsheet processor brain
+ *
+ * Process values and stores them in an array
+ * Use startr and startc to recursively check for better data to  plot
+ *
+ * @param {array} values
+ * @param {number} startr
+ * @param {number} startc
+ */
 const processSpreadsheet = (values, startr = 0, startc = 0) => {
   const processedData = {
     data: [],

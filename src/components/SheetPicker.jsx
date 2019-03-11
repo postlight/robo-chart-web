@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { setActiveSheet } from '../actions/sheetData';
 import { resetChartData } from '../actions/chartData';
 
+/**
+ * A radio button Sheet Picker having all available sheets
+ */
 const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
   const activateSheet = val => {
     dispatch(resetChartData());
@@ -17,7 +20,11 @@ const SheetPicker = ({ sheetData, activeSheet, dispatch }) => {
         classname += ' active';
       }
       availableSheets.push(
-        <label key={sheet.properties.title} className={classname}>
+        <label
+          htmlFor={sheet.properties.title}
+          key={sheet.properties.title}
+          className={classname}
+        >
           <input
             type="radio"
             name="sheets"

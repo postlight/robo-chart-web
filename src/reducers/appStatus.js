@@ -4,6 +4,9 @@ import {
   SET_ERROR,
 } from '../actions/appStatus';
 
+/**
+ * Check appStatus actions for docs
+ */
 const appStatus = (state = [], action) => {
   switch (action.type) {
     case SET_FETCHING_DATA: {

@@ -9,11 +9,20 @@ import SpreadsheetPicker from '../components/SpreadsheetPicker';
 import MyChart from '../components/MyChart';
 import { processSpreadsheet } from '../utils/processSpreadsheet';
 
+/**
+ * Main screen
+ */
 class Home extends Component {
+  /**
+   * Query Google sheets once the component mounts
+   */
   componentDidMount() {
     this.runQuery();
   }
 
+  /**
+   * Check if app should run a new query on componentWillReceiveProps
+   */
   componentWillReceiveProps(nextProps) {
     const { sheetId, activeSheet, start, end } = this.props;
     const {
@@ -33,6 +42,9 @@ class Home extends Component {
     }
   }
 
+  /**
+   * Compose and run query using app state
+   */
   runQuery() {
     const { sheetId, data, dispatch } = this.props;
     const { REACT_APP_TOKEN, REACT_APP_API } = process.env;
@@ -70,6 +82,10 @@ class Home extends Component {
     }
   }
 
+  /**
+   * Process fetched data, try to find best data to plot
+   * @param {object} res query result
+   */
   process(res) {
     const { dispatch } = this.props;
 

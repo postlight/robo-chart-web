@@ -1,3 +1,4 @@
+// predefined chart options for line charts
 const options = {
   responsive: true,
   maintainAspectRatio: false,

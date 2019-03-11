@@ -1,5 +1,12 @@
 import { options } from '../utils/lineOptions';
 
+/**
+ * Returns chart data specific for Bar chart type with reversed axis processing
+ *
+ * @param {object} data chart data
+ * @param {boolean} stacked true or false
+ * @param {array} colors array of colors used to present data
+ */
 const getBarReverseChartData = (data, stacked, colors) => {
   const chartData = {
     labels: [],

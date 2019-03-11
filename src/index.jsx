@@ -8,6 +8,12 @@ import App from './components/App';
 import rootReducer from './reducers';
 import { COLORS } from './constants';
 
+/**
+ * Generate and persist colors only once
+ * Users may edit colors later on, changes are also persisted
+ *
+ * @param {number} num
+ */
 const generateColors = num => {
   let colors = JSON.parse(localStorage.getItem(COLORS));
   if (!colors || colors.length < 300) {

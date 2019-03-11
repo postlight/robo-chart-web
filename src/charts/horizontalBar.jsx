@@ -1,6 +1,12 @@
 import { options } from '../utils/horizontalBarOptions';
 
-const getHorizontalBarChartData = (data, stacked, colors) => {
+/**
+ * Returns chart data specific for Horizontal Bar chart type
+ *
+ * @param {object} data chart data
+ * @param {array} colors array of colors used to present data
+ */
+const getHorizontalBarChartData = (data, colors) => {
   const chartData = {
     labels: [],
     datasets: [],

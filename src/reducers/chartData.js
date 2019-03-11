@@ -11,6 +11,9 @@ import {
 
 import { COLORS } from '../constants';
 
+/**
+ * Check chartData actions for docs
+ */
 const chartData = (state = [], action) => {
   switch (action.type) {
     case RESET_CHART_DATA: {

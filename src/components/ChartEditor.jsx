@@ -20,15 +20,31 @@ let activeInputIndex = -1;
 let gtitle = '';
 let gstartFrom;
 
+/**
+ * Chart editor component
+ */
 const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
   if (chartData.data.length === 0) {
     return '';
   }
 
+  /**
+   * Check if string is a hexadecimal color
+   * example of accepted values: #f0f #f1f1f1
+   *
+   * @param {string} hex
+   */
   const isHex = hex => {
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(hex);
   };
 
+  /**
+   * Set start from for the values axis.
+   * example: if minimum value is 10000, user might choose to start the Y Axis from 9000 instead of 0
+   * Handles both dispatch and updating the attribute
+   *
+   * @param {number} val
+   */
   const updateAxisStartFrom = val => {
     if (!val) {
       if (!Number.isNaN(gstartFrom)) {
@@ -39,6 +55,12 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     }
   };
 
+  /**
+   * Update chart title
+   * Handles both dispatch and updating the attribute
+   *
+   * @param {string} val
+   */
   const updateTitle = val => {
     if (!val) {
       dispatch(setChartTitle(gtitle));
@@ -47,10 +69,19 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     }
   };
 
+  /**
+   * Flip axis, rows and cols
+   */
   const flipAxis = () => {
     dispatch(setFlipAxis(!chartData.flipAxis));
   };
 
+  /**
+   * Change active color
+   *
+   * @param {string} color
+   * @param {number} index
+   */
   const handleColorFocus = (color, index) => {
     activeInputIndex = index;
     if (isHex(color)) {
@@ -58,18 +89,34 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     }
   };
 
+  /**
+   * Update sheet start cell, e.g.: A5
+   *
+   * @param {string} val
+   */
   const updateStart = val => {
     start = val.toUpperCase();
   };
 
+  /**
+   * Update sheet end cell, e.g.: E15
+   *
+   * @param {string} val
+   */
   const updateEnd = val => {
     end = val.toUpperCase();
   };
 
+  /**
+   * Handle color change
+   * Used for both manual input field and color picker
+   *
+   * @param {string} color
+   */
   const handleColorChange = color => {
     let hex = color;
     if (color && color.hex) {
-      hex = color.hex;
+      ({ hex } = color);
     }
     if (isHex(hex) && activeInputIndex > -1) {
       const colors = cloneDeep(chartData.colors);
@@ -82,6 +129,9 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     }
   };
 
+  /**
+   * Change start and end cells
+   */
   const reload = () => {
     const regex = /([a-zA-Z0-9]+)/gi;
     const startmatches = start.match(regex);
@@ -95,15 +145,14 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     }
   };
 
+  // Generate enough color fields for available datasets
   const colorPickers = [];
-
   let max = 0;
   chartData.data.forEach(dataset => {
     if (dataset.length > max) {
       max = dataset.length;
     }
   });
-
   for (let i = 0; i < max; i += 1) {
     const color = chartData.colors[i];
     const style = { background: color };
@@ -123,9 +172,10 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     );
   }
 
+  // set chart title to sheet title, unless user provided a title
   let title = activeSheet;
   if (chartData.title && chartData.title.length > 0) {
-    title = chartData.title;
+    ({ title } = chartData);
   }
 
   return (

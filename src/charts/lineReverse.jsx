@@ -1,5 +1,11 @@
 import { options } from '../utils/lineOptions';
 
+/**
+ * Returns chart data specific for Line chart type with reversed axis processing
+ *
+ * @param {object} data chart data
+ * @param {array} colors array of colors used to present data
+ */
 const getLineReverseChartData = (data, colors) => {
   const chartData = {
     labels: [],

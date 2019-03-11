@@ -6,6 +6,9 @@ import {
   SET_START_AND_END,
 } from '../actions/sheetData';
 
+/**
+ * Check sheetData actions for docs
+ */
 const chartData = (state = [], action) => {
   switch (action.type) {
     case SET_SHEET_DATA: {
