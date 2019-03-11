@@ -2,7 +2,7 @@ import React from 'react';
 import postlightgif from '../static/images/postlight-labs.gif';
 
 export default () => (
-  <footer className="footer sheets-container">
+  <footer className="footer sheets-container shadow">
     <span role="img" aria-label="microscope">
       🔬 A Labs project from your friends at
     </span>

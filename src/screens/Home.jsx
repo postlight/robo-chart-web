@@ -6,7 +6,7 @@ import { setSheetData, setSheetId } from '../actions/sheetData';
 import { setFetchingData, setAuthError, setError } from '../actions/appStatus';
 import { setChartData } from '../actions/chartData';
 import SpreadsheetPicker from '../components/SpreadsheetPicker';
-import MyChart from '../components/MyChart';
+import ChartView from '../components/ChartView';
 import { processSpreadsheet } from '../utils/processSpreadsheet';
 
 /**
@@ -120,7 +120,7 @@ class Home extends Component {
     return (
       <React.Fragment>
         <SpreadsheetPicker />
-        <MyChart />
+        <ChartView />
         <ChartEditor />
       </React.Fragment>
     );
