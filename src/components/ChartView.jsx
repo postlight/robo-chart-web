@@ -18,7 +18,6 @@ const ChartView = ({ cdata, appStatus }) => {
 
 const mapStateToProps = state => ({
   cdata: state.chartData,
-  activeSheet: state.sheetData.activeSheet,
   appStatus: state.appStatus,
 });
 

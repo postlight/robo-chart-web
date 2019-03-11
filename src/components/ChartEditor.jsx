@@ -24,7 +24,7 @@ let gstartFrom;
  * Chart editor component
  */
 const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
-  if (chartData.data.length === 0) {
+  if (chartData.data.length === 0 || activeSheet === '') {
     return '';
   }
 

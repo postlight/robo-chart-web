@@ -61,8 +61,6 @@ class Home extends Component {
           data.activeSheet
         }${grid}${REACT_APP_TOKEN}`;
       }
-      // eslint-disable-next-line no-console
-      console.log(`RQ: Home ${url}`);
 
       dispatch(setFetchingData(true));
       axios
