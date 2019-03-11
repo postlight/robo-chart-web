@@ -50,7 +50,3 @@ Unless it is explicitly stated otherwise, any contribution intentionally submitt
 ---
 
 🔬 A Labs project from your friends at [Postlight](https://postlight.com/labs)
-
-```
-
-```
