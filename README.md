@@ -1,14 +1,14 @@
-# Smart Chart
+# Robo Chart
 
 Transform Google sheets to pretty charts!
 
-![Smart Chart preview](src/static/images/smart-chart.png)
+![Robo Chart preview](src/static/images/robo-chart.png)
 
 ## How to Install
 
 1. Clone the repository:
 
-   > git clone https://github.com/postlight/smart-chart.git
+   > git clone https://github.com/postlight/robo-chart-web.git
 
 2. Generate a Google API Key: https://console.cloud.google.com/apis/credentials
 3. Rename `.env.sample` to `.env` and paste the generated API Key in the `REACT_APP_TOKEN` field
@@ -22,11 +22,11 @@ Once setup is done, the app will be available on http://localhost:3000
 
 ## How to use
 
-Paste your Google Sheet URL in the Spreadsheet field, Smart Chart will fetch the data and process it.
+Paste your Google Sheet URL in the Spreadsheet field, Robo Chart will fetch the data and process it.
 
 You can switch between different sheets, pick chart type, modify the Rows and Columns to process, flip Rows & Columns, modify colors and other..
 
-![Smart Chart preview](src/static/images/smart-chart.gif)
+![Robo Chart preview](src/static/images/robo-chart.gif)
 
 ## Spreadsheet format
 
