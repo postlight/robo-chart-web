@@ -147,7 +147,7 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
 
   // Generate enough color fields for available datasets
   const colorPickers = [];
-  let max = 0;
+  let max = chartData.data.length;
   chartData.data.forEach(dataset => {
     if (dataset.length > max) {
       max = dataset.length;
