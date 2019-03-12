@@ -24,22 +24,20 @@ const SpreadsheetPicker = ({ dispatch }) => {
   };
 
   return (
-    <div className="sheets-container">
-      <div className="input-group input-group-lg">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg">
-            Spreadsheet
-          </span>
-        </div>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxx/edit#gid=0"
-          aria-label="Large"
-          aria-describedby="inputGroup-sizing-sm"
-          onChange={evt => validateAndExecute(evt.target.value, dispatch)}
-        />
+    <div className="sheets-container input-group input-group-lg">
+      <div className="input-group-prepend">
+        <span className="input-group-text" id="inputGroup-sizing-lg">
+          Spreadsheet
+        </span>
       </div>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxx/edit#gid=0"
+        aria-label="Large"
+        aria-describedby="inputGroup-sizing-sm"
+        onChange={evt => validateAndExecute(evt.target.value, dispatch)}
+      />
     </div>
   );
 };

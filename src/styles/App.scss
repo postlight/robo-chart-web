@@ -1,15 +1,32 @@
 @import 'Variables';
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   background-color: $backgroud;
+  min-height: 100%;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
   color: $font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100%;
 }
 
 .form-inline {
@@ -63,24 +80,27 @@ body {
   }
 }
 
-.footer {
-  color: $footer-color;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  margin-top: 0 !important;
-  margin-bottom: 10px !important;
-  background: $footer-background;
-  text-align: center;
-  border-radius: 5px;
-  span {
-    display: inline-block;
-    font-size: 17px;
-  }
-  .footer-gif {
-    display: block;
-    padding-top: 10px;
-    width: 204px;
-    margin: 0 auto;
+.footer-container {
+  padding-top: 250px;
+  footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: $footer-color;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: $footer-background;
+    text-align: center;
+    span {
+      display: inline-block;
+      font-size: 17px;
+    }
+    .footer-gif {
+      display: block;
+      padding-top: 10px;
+      width: 204px;
+      margin: 0 auto;
+    }
   }
 }
 
@@ -115,6 +135,11 @@ body {
   margin-left: -28px;
   margin-top: 50px;
   padding-bottom: 50px;
+}
+
+.input-group-lg {
+  margin-top: 0px !important;
+  padding-top: $vpadding;
 }
 
 .sheets-container {
