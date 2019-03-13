@@ -47,19 +47,19 @@ class Home extends Component {
    */
   runQuery() {
     const { sheetId, data, dispatch } = this.props;
-    const { REACT_APP_TOKEN, REACT_APP_API } = process.env;
+    const { REACT_APP_CHART_TOKEN, REACT_APP_GSHEETS_API } = process.env;
     if (sheetId && sheetId.length > 5) {
-      let url = `${REACT_APP_API}${sheetId}?key=${REACT_APP_TOKEN}`;
+      let url = `${REACT_APP_GSHEETS_API}${sheetId}?key=${REACT_APP_CHART_TOKEN}`;
       if (data.activeSheet.length > 0) {
-        url = `${REACT_APP_API}${sheetId}/values/${
+        url = `${REACT_APP_GSHEETS_API}${sheetId}/values/${
           data.activeSheet
-        }?key=${REACT_APP_TOKEN}`;
+        }?key=${REACT_APP_CHART_TOKEN}`;
       }
       if (data.start.length > 0 && data.end.length > 0) {
         const grid = `!${data.start}:${data.end}`;
-        url = `${REACT_APP_API}${sheetId}/values/${
+        url = `${REACT_APP_GSHEETS_API}${sheetId}/values/${
           data.activeSheet
-        }${grid}?key=${REACT_APP_TOKEN}`;
+        }${grid}?key=${REACT_APP_CHART_TOKEN}`;
       }
 
       dispatch(setFetchingData(true));
