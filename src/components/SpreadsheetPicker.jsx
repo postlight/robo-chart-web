@@ -37,6 +37,7 @@ const SpreadsheetPicker = ({ dispatch }) => {
         aria-label="Large"
         aria-describedby="inputGroup-sizing-sm"
         onChange={evt => validateAndExecute(evt.target.value, dispatch)}
+        onKeyPress={evt => validateAndExecute(evt.target.value, dispatch)}
       />
     </div>
   );

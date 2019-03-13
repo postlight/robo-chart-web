@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Line, Bar, HorizontalBar, Pie, Doughnut } from 'react-chartjs-2';
-import { Button } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
 import domtoimage from 'dom-to-image';
 import getLineChartData from '../charts/line';
 import getLineReverseChartData from '../charts/lineReverse';
@@ -11,11 +11,12 @@ import getBarChartData from '../charts/bar';
 import getBarReverseChartData from '../charts/barReverse';
 import getPieChartData from '../charts/pie';
 import getPieReverseChartData from '../charts/pieReverse';
+import { DEMO_SHEETID } from '../constants';
 
 /**
  * Chart component
  */
-const Chart = ({ cdata, activeSheet }) => {
+const Chart = ({ cdata, activeSheet, sheetId }) => {
   /**
    * Export image to PNG with transparency
    */
@@ -242,21 +243,36 @@ const Chart = ({ cdata, activeSheet }) => {
     style = { width: dimensions[0], height: dimensions[1] };
   }
 
+  let sheeturl;
+  if (sheetId === DEMO_SHEETID) {
+    sheeturl = `https://docs.google.com/spreadsheets/d/${DEMO_SHEETID}/edit`;
+  }
+
   return (
-    <div>
-      <div className="in-container sheets-container shadow" style={style}>
-        <div className="save-chart">
-          <Button
-            onClick={() => {
-              saveImagePng();
-            }}
-            variant="outline-secondary"
-          >
-            SAVE
-          </Button>
-        </div>
-        {chart}
+    <div className="in-container sheets-container shadow" style={style}>
+      {sheeturl && (
+        <Alert dismissible variant="info">
+          <Alert.Heading>Voila!</Alert.Heading>
+          <p>
+            This chart was generated using this{' '}
+            <a href={sheeturl} target="_blank" rel="noopener noreferrer">
+              Google Spreadsheet
+            </a>
+          </p>
+          <p>Click the green Save button or scroll down and edit this chart!</p>
+        </Alert>
+      )}
+      <div className="save-chart">
+        <Button
+          onClick={() => {
+            saveImagePng();
+          }}
+          variant="outline-secondary"
+        >
+          SAVE
+        </Button>
       </div>
+      {chart}
     </div>
   );
 };
@@ -264,6 +280,7 @@ const Chart = ({ cdata, activeSheet }) => {
 const mapStateToProps = state => ({
   cdata: state.chartData,
   activeSheet: state.sheetData.activeSheet,
+  sheetId: state.sheetData.sheetId,
 });
 
 export default connect(mapStateToProps)(Chart);

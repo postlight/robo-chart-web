@@ -9,7 +9,13 @@ import Chart from './Chart';
 const ChartView = ({ cdata, appStatus }) => {
   const { data } = cdata;
 
-  if (data && data.length > 0 && !appStatus.fetchingData) {
+  if (
+    data &&
+    data.length > 0 &&
+    !appStatus.fetchingData &&
+    !appStatus.authError &&
+    !appStatus.error
+  ) {
     return <Chart />;
   }
 

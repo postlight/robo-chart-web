@@ -11,6 +11,21 @@ import { DEMO_SHEETID } from '../constants';
 const InfoView = ({ appStatus, dispatch }) => {
   return (
     <div className="sheets-container shadow">
+      {appStatus.authError && (
+        <Alert variant="danger">
+          <Alert.Heading>Oh snap!</Alert.Heading>
+          <p>
+            It looks like your Spreadsheet is private, please change its access
+            to <strong>Anyone with the link</strong> and then try again
+          </p>
+        </Alert>
+      )}
+      {appStatus.error && (
+        <Alert variant="danger">
+          <Alert.Heading>Oh snap!</Alert.Heading>
+          <p>It looks like there is a connection issue, please try again.</p>
+        </Alert>
+      )}
       {!appStatus.fetchingData && (
         <Alert variant="success">
           <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
@@ -28,24 +43,9 @@ const InfoView = ({ appStatus, dispatch }) => {
               onClick={() => dispatch(setSheetId(DEMO_SHEETID))}
               variant="outline-success"
             >
-              Run Demo!
+              No Spreadsheet yet? Click me!
             </Button>
           </div>
-        </Alert>
-      )}
-      {appStatus.authError && (
-        <Alert variant="danger">
-          <Alert.Heading>Oh snap!</Alert.Heading>
-          <p>
-            It looks like your Spreadsheet is private, please change its access
-            to <strong>Anyone with the link</strong> and then try again
-          </p>
-        </Alert>
-      )}
-      {appStatus.error && (
-        <Alert variant="danger">
-          <Alert.Heading>Oh snap!</Alert.Heading>
-          <p>It looks like there is a connection issue, please try again.</p>
         </Alert>
       )}
       {appStatus.fetchingData && (

@@ -25,6 +25,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  font-weight: bold;
+  color: inherit !important;
+  text-decoration: none !important;
+  :hover {
+    color: inherit;
+  }
+}
+
 #root {
   min-height: 100%;
 }
