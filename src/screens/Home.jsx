@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import ChartEditor from '../components/ChartEditor';
 import { setSheetData, setSheetId } from '../actions/sheetData';
 import { setFetchingData, setAuthError, setError } from '../actions/appStatus';
@@ -63,19 +62,27 @@ class Home extends Component {
       }
 
       dispatch(setFetchingData(true));
-      axios
-        .get(url)
+
+      fetch(url)
         .then(res => {
           dispatch(setFetchingData(false));
-          this.process(res);
-        })
-        .catch(error => {
-          if (error.response && error.response.status === 403) {
-            dispatch(setAuthError(true));
+          if (res.status !== 200) {
+            dispatch(setSheetId(''));
+            if (res.status === 403) {
+              dispatch(setAuthError(true));
+            } else {
+              dispatch(setError(true));
+            }
           } else {
-            dispatch(setError(true));
+            res.json().then(response => {
+              this.process(response);
+            });
           }
+        })
+        .catch(() => {
           dispatch(setSheetId(''));
+          dispatch(setError(true));
+          dispatch(setFetchingData(false));
         });
     }
   }
@@ -87,16 +94,16 @@ class Home extends Component {
   process(res) {
     const { dispatch } = this.props;
 
-    if (res.data && res.data.sheets) {
-      dispatch(setSheetData(res.data));
+    if (res && res.sheets) {
+      dispatch(setSheetData(res));
     }
 
-    if (res.data && res.data.values) {
-      let processedData = processSpreadsheet(res.data.values);
+    if (res && res.values) {
+      let processedData = processSpreadsheet(res.values);
       let done = false;
       while (processedData && processedData.data.length > 0 && !done) {
         const tempProcessedData = processSpreadsheet(
-          res.data.values,
+          res.values,
           processedData.startr + 1,
           processedData.startc + 1,
         );
