@@ -6,12 +6,16 @@ Transform Google sheets to pretty charts!
 
 ## How to Install
 
-1. Clone the repository:
+To install the React Component, please check [this link](https://github.com/postlight/react-google-sheet-chart).
+
+To setup this repository, follow these steps:
+
+1. Clone the project:
 
    > git clone https://github.com/postlight/robo-chart-web.git
 
 2. Generate a Google API Key: https://console.cloud.google.com/apis/credentials
-3. Rename `.env.sample` to `.env` and paste the generated API Key in the `REACT_APP_TOKEN` field
+3. Rename `.env.sample` to `.env` and paste the generated API Key in the `REACT_APP_CHART_TOKEN` field
 4. run the following commands:
    ```sh
    npm install
