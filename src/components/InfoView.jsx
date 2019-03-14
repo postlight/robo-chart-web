@@ -35,7 +35,7 @@ const InfoView = ({ appStatus, dispatch }) => {
             stuff
           </p>
           <p>
-            Make sure your spreadsheet follows the
+            Make sure your spreadsheet follows the{' '}
             <a
               href="https://github.com/postlight/robo-chart-web#spreadsheet-format"
               target="_blank"
