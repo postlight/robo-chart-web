@@ -30,12 +30,19 @@ const InfoView = ({ appStatus, dispatch }) => {
         <Alert variant="success">
           <Alert.Heading>Hey, you wanna create some charts ?</Alert.Heading>
           <p>
-            Paste your Google Spreadsheet URL in the field above, and if today
-            is a good day, a chart will show up!
+            After you paste in the URL to a public Google spreadsheet, you’ll be
+            able to change the grid, colors, labels, legends, and other cool
+            stuff
           </p>
           <p>
-            Once a URL is provided, you will be able to change the grid, colors,
-            labels, legends and other cool stuff
+            Make sure your spreadsheet follows the
+            <a
+              href="https://github.com/postlight/robo-chart-web#spreadsheet-format"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              correct format!
+            </a>
           </p>
           <hr />
           <div className="d-flex justify-content-end">
