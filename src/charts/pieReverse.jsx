@@ -21,6 +21,9 @@ const getPieReverseChartData = (data, semi, colors) => {
   if (semi) {
     chartData.options.circumference = Math.PI;
     chartData.options.rotation = -Math.PI;
+  } else {
+    chartData.options.circumference = 2 * Math.PI;
+    chartData.options.rotation = 0;
   }
 
   let colorIndex = 0;
