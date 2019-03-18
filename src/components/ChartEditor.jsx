@@ -12,6 +12,8 @@ import {
   setStartFrom,
   setChartTitle,
   setFlipAxis,
+  setxSuffix,
+  setySuffix,
 } from '../actions/chartData';
 
 let start = '';
@@ -19,6 +21,8 @@ let end = '';
 let activeInputIndex = -1;
 let gtitle = '';
 let gstartFrom;
+let gxsuffix = '';
+let gysuffix = '';
 
 /**
  * Chart editor component
@@ -66,6 +70,34 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
       dispatch(setChartTitle(gtitle));
     } else {
       gtitle = val;
+    }
+  };
+
+  /**
+   * Update y axis labels suffix
+   * Handles both dispatch and updating the attribute
+   *
+   * @param {string} val
+   */
+  const updateySuffix = val => {
+    if (!val && val !== '') {
+      dispatch(setySuffix(gysuffix));
+    } else {
+      gysuffix = val;
+    }
+  };
+
+  /**
+   * Update x axis labels suffix
+   * Handles both dispatch and updating the attribute
+   *
+   * @param {string} val
+   */
+  const updatexSuffix = val => {
+    if (!val && val !== '') {
+      dispatch(setxSuffix(gxsuffix));
+    } else {
+      gxsuffix = val;
     }
   };
 
@@ -185,42 +217,49 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
         <Card.Header>Chart Type</Card.Header>
         <Card.Body>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('line'))}
           >
             Line
           </Button>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('bar'))}
           >
             Bar
           </Button>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('horizontalBar'))}
           >
             Horizontal Bar
           </Button>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('stacked'))}
           >
             Stacked
           </Button>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('pie'))}
           >
             Pie
           </Button>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('semi-pie'))}
           >
             Semi Pie
           </Button>
           <Button
+            className="type-button"
             variant="outline-secondary"
             onClick={() => dispatch(setChartType('doughnut'))}
           >
@@ -297,6 +336,54 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
           </div>
           <Card.Subtitle className="mb-2 text-muted apply-subtitle">
             Change the title above the chart
+          </Card.Subtitle>
+          <hr />
+
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Y Suffix</span>
+            </div>
+            <input
+              type="text"
+              maxLength="20"
+              key={chartData.ysuffix}
+              className="form-control"
+              placeholder=""
+              defaultValue={chartData.ysuffix}
+              onChange={evt => updateySuffix(evt.target.value)}
+            />
+            <Button
+              variant="outline-secondary"
+              className="apply-button"
+              onClick={() => updateySuffix()}
+            >
+              Apply
+            </Button>
+          </div>
+          <br />
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text">X Suffix</span>
+            </div>
+            <input
+              type="text"
+              maxLength="20"
+              key={chartData.xsuffix}
+              className="form-control"
+              placeholder=""
+              defaultValue={chartData.xsuffix}
+              onChange={evt => updatexSuffix(evt.target.value)}
+            />
+            <Button
+              variant="outline-secondary"
+              className="apply-button"
+              onClick={() => updatexSuffix()}
+            >
+              Apply
+            </Button>
+          </div>
+          <Card.Subtitle className="mb-2 text-muted apply-subtitle">
+            Add a Suffix to X-axis or Y-axis labels
           </Card.Subtitle>
         </Card.Body>
       </Card>

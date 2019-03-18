@@ -19,6 +19,11 @@ const options = {
   legend: {
     position: 'bottom',
   },
+  tooltips: {
+    mode: 'x',
+    intersect: false,
+    callbacks: {},
+  },
   scales: {
     xAxes: [
       {
