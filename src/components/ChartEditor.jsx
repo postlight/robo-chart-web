@@ -383,7 +383,7 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
             </Button>
           </div>
           <Card.Subtitle className="mb-2 text-muted apply-subtitle">
-            Add a Suffix to X-axis or Y-axis Labels
+            Add a Suffix to X-axis or Y-axis labels
           </Card.Subtitle>
         </Card.Body>
       </Card>
