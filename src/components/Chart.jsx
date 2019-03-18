@@ -44,8 +44,8 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
   };
 
   const {
-    suffix,
-    prefix,
+    xsuffix,
+    ysuffix,
     startFrom,
     title,
     flipAxis,
@@ -72,20 +72,17 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
     chartTitle = title;
   }
 
-  const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis} ${stacked} ${suffix} ${prefix}`;
+  const flip =
+    (rowCount > columnCount && flipAxis) ||
+    (rowCount <= columnCount && !flipAxis);
+  const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis} ${stacked} ${xsuffix} ${ysuffix}`;
   let chart;
   switch (type) {
     case 'line':
-      if (rowCount > columnCount) {
-        if (flipAxis) {
-          chartData = getLineReverseChartData(data, colors);
-        } else {
-          chartData = getLineChartData(data, colors);
-        }
-      } else if (flipAxis) {
-        chartData = getLineChartData(data, colors);
-      } else {
+      if (flip) {
         chartData = getLineReverseChartData(data, colors);
+      } else {
+        chartData = getLineChartData(data, colors);
       }
 
       datasets = { datasets: chartData.datasets, labels: chartData.labels };
@@ -94,8 +91,8 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         maintainAspectRatio,
         chartTitle,
         startFrom,
-        prefix,
-        suffix,
+        xsuffix,
+        ysuffix,
       );
 
       chart = (
@@ -103,16 +100,10 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       );
       break;
     case 'bar':
-      if (rowCount > columnCount) {
-        if (flipAxis) {
-          chartData = getBarReverseChartData(data, stacked, colors);
-        } else {
-          chartData = getBarChartData(data, stacked, colors);
-        }
-      } else if (flipAxis) {
-        chartData = getBarChartData(data, stacked, colors);
-      } else {
+      if (flip) {
         chartData = getBarReverseChartData(data, stacked, colors);
+      } else {
+        chartData = getBarChartData(data, stacked, colors);
       }
       datasets = { datasets: chartData.datasets, labels: chartData.labels };
 
@@ -121,8 +112,8 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         maintainAspectRatio,
         chartTitle,
         startFrom,
-        prefix,
-        suffix,
+        xsuffix,
+        ysuffix,
       );
 
       chart = (
@@ -130,16 +121,10 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       );
       break;
     case 'horizontalBar':
-      if (rowCount > columnCount) {
-        if (flipAxis) {
-          chartData = getHorizontalBarReverseChartData(data, colors);
-        } else {
-          chartData = getHorizontalBarChartData(data, colors);
-        }
-      } else if (flipAxis) {
-        chartData = getHorizontalBarChartData(data, colors);
-      } else {
+      if (flip) {
         chartData = getHorizontalBarReverseChartData(data, colors);
+      } else {
+        chartData = getHorizontalBarChartData(data, colors);
       }
       datasets = { datasets: chartData.datasets, labels: chartData.labels };
 
@@ -148,8 +133,8 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         maintainAspectRatio,
         chartTitle,
         startFrom,
-        prefix,
-        suffix,
+        xsuffix,
+        ysuffix,
       );
 
       chart = (
@@ -161,13 +146,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       );
       break;
     case 'pie':
-      if (rowCount > columnCount) {
-        if (!flipAxis) {
-          chartData = getPieChartData(data, false, colors);
-        } else {
-          chartData = getPieReverseChartData(data, false, colors);
-        }
-      } else if (!flipAxis) {
+      if (flip) {
         chartData = getPieReverseChartData(data, false, colors);
       } else {
         chartData = getPieChartData(data, false, colors);
@@ -179,13 +158,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       );
       break;
     case 'semi-pie':
-      if (rowCount > columnCount) {
-        if (!flipAxis) {
-          chartData = getPieChartData(data, true, colors);
-        } else {
-          chartData = getPieReverseChartData(data, true, colors);
-        }
-      } else if (!flipAxis) {
+      if (flip) {
         chartData = getPieReverseChartData(data, true, colors);
       } else {
         chartData = getPieChartData(data, true, colors);
@@ -197,13 +170,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       );
       break;
     case 'doughnut':
-      if (rowCount > columnCount) {
-        if (!flipAxis) {
-          chartData = getPieChartData(data, false, colors);
-        } else {
-          chartData = getPieReverseChartData(data, false, colors);
-        }
-      } else if (!flipAxis) {
+      if (flip) {
         chartData = getPieReverseChartData(data, false, colors);
       } else {
         chartData = getPieChartData(data, false, colors);
@@ -219,13 +186,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       );
       break;
     case 'semi-doughnut':
-      if (rowCount > columnCount) {
-        if (!flipAxis) {
-          chartData = getPieChartData(data, true, colors);
-        } else {
-          chartData = getPieReverseChartData(data, true, colors);
-        }
-      } else if (!flipAxis) {
+      if (flip) {
         chartData = getPieReverseChartData(data, true, colors);
       } else {
         chartData = getPieChartData(data, true, colors);

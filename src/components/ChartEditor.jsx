@@ -12,8 +12,8 @@ import {
   setStartFrom,
   setChartTitle,
   setFlipAxis,
-  setSuffix,
-  setPrefix,
+  setxSuffix,
+  setySuffix,
 } from '../actions/chartData';
 
 let start = '';
@@ -21,8 +21,8 @@ let end = '';
 let activeInputIndex = -1;
 let gtitle = '';
 let gstartFrom;
-let gsuffix = '';
-let gprefix = '';
+let gxsuffix = '';
+let gysuffix = '';
 
 /**
  * Chart editor component
@@ -74,30 +74,30 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
   };
 
   /**
-   * Update Values labels suffix
+   * Update y axis labels suffix
    * Handles both dispatch and updating the attribute
    *
    * @param {string} val
    */
-  const updateSuffix = val => {
+  const updateySuffix = val => {
     if (!val && val !== '') {
-      dispatch(setSuffix(gsuffix));
+      dispatch(setySuffix(gysuffix));
     } else {
-      gsuffix = val;
+      gysuffix = val;
     }
   };
 
   /**
-   * Update Values labels prefix
+   * Update x axis labels suffix
    * Handles both dispatch and updating the attribute
    *
    * @param {string} val
    */
-  const updatePrefix = val => {
+  const updatexSuffix = val => {
     if (!val && val !== '') {
-      dispatch(setPrefix(gprefix));
+      dispatch(setxSuffix(gxsuffix));
     } else {
-      gprefix = val;
+      gxsuffix = val;
     }
   };
 
@@ -341,21 +341,21 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
 
           <div className="input-group">
             <div className="input-group-prepend">
-              <span className="input-group-text">Prefix</span>
+              <span className="input-group-text">Y Suffix</span>
             </div>
             <input
               type="text"
               maxLength="20"
-              key={chartData.prefix}
+              key={chartData.ysuffix}
               className="form-control"
               placeholder=""
-              defaultValue={chartData.prefix}
-              onChange={evt => updatePrefix(evt.target.value)}
+              defaultValue={chartData.ysuffix}
+              onChange={evt => updateySuffix(evt.target.value)}
             />
             <Button
               variant="outline-secondary"
               className="apply-button"
-              onClick={() => updatePrefix()}
+              onClick={() => updateySuffix()}
             >
               Apply
             </Button>
@@ -363,27 +363,27 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
           <br />
           <div className="input-group">
             <div className="input-group-prepend">
-              <span className="input-group-text">Suffix</span>
+              <span className="input-group-text">X Suffix</span>
             </div>
             <input
               type="text"
               maxLength="20"
-              key={chartData.suffix}
+              key={chartData.xsuffix}
               className="form-control"
               placeholder=""
-              defaultValue={chartData.suffix}
-              onChange={evt => updateSuffix(evt.target.value)}
+              defaultValue={chartData.xsuffix}
+              onChange={evt => updatexSuffix(evt.target.value)}
             />
             <Button
               variant="outline-secondary"
               className="apply-button"
-              onClick={() => updateSuffix()}
+              onClick={() => updatexSuffix()}
             >
               Apply
             </Button>
           </div>
           <Card.Subtitle className="mb-2 text-muted apply-subtitle">
-            Add a Prefix and/or Suffix to the Values Labels
+            Add a Suffix to X-axis or Y-axis Labels
           </Card.Subtitle>
         </Card.Body>
       </Card>

@@ -6,16 +6,16 @@
  * @param {boolean} maintainAspectRatio
  * @param {string} chartTitle
  * @param {number} startFrom
- * @param {string} prefix
- * @param {string} suffix
+ * @param {string} xsuffix
+ * @param {string} ysuffix
  */
 const handleOptions = (
   options,
   maintainAspectRatio,
   chartTitle,
   startFrom,
-  prefix,
-  suffix,
+  xsuffix,
+  ysuffix,
 ) => {
   options.maintainAspectRatio = maintainAspectRatio;
   options.title.text = chartTitle;
@@ -29,15 +29,11 @@ const handleOptions = (
     options.scales.yAxes[0].ticks = { beginAtZero: true };
   }
 
-  options.scales.yAxes[0].ticks.callback = value => {
-    return `${prefix}${value}${suffix}`;
+  options.scales.xAxes[0].ticks.callback = value => {
+    return `${value}${xsuffix}`;
   };
-  options.tooltips.callbacks = {
-    label(tooltipItem, vdata) {
-      let { label } = vdata.datasets[tooltipItem.datasetIndex];
-      label += `: ${prefix}${tooltipItem.yLabel}${suffix}`;
-      return label;
-    },
+  options.scales.yAxes[0].ticks.callback = value => {
+    return `${value}${ysuffix}`;
   };
 };
 
