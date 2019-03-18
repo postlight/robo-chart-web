@@ -240,7 +240,11 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
 
   let style = {};
   if (dimensions.length > 0) {
-    style = { width: dimensions[0], height: dimensions[1] };
+    style = {
+      width: dimensions[0],
+      height: dimensions[1],
+      marginBottom: '30px',
+    };
   }
 
   let sheeturl;
@@ -249,9 +253,13 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
   }
 
   return (
-    <div className="in-container sheets-container shadow" style={style}>
+    <React.Fragment>
       {sheeturl && (
-        <Alert dismissible variant="info">
+        <Alert
+          className="in-container sheets-container"
+          dismissible
+          variant="info"
+        >
           <Alert.Heading>Voila!</Alert.Heading>
           <p>
             This chart was generated using this{' '}
@@ -262,18 +270,20 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
           <p>Click the green Save button or scroll down and edit this chart!</p>
         </Alert>
       )}
-      <div className="save-chart">
-        <Button
-          onClick={() => {
-            saveImagePng();
-          }}
-          variant="outline-secondary"
-        >
-          SAVE
-        </Button>
+      <div className="sheets-container" style={style}>
+        <div className="save-chart">
+          <Button
+            onClick={() => {
+              saveImagePng();
+            }}
+            variant="outline-secondary"
+          >
+            SAVE
+          </Button>
+        </div>
+        {chart}
       </div>
-      {chart}
-    </div>
+    </React.Fragment>
   );
 };
 
