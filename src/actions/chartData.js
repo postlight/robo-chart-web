@@ -7,6 +7,8 @@ export const SET_CHART_TYPE = 'SET_CHART_TYPE';
 export const SET_CHART_COLORS = 'SET_CHART_COLORS';
 export const SET_ACTIVE_COLOR = ' SET_ACTIVE_COLOR';
 export const SET_CHART_TITLE = 'SET_CHART_TITLE';
+export const SET_SUFFIX = 'SET_SUFFIX';
+export const SET_PREFIX = 'SET_PREFIX';
 export const SET_START_FROM = 'SET_START_FROM';
 export const SET_FLIP_AXIS = 'SET_FLIP_AXIS';
 export const RESET_CHART_DATA = 'RESET_CHART_DATA';
@@ -65,6 +67,22 @@ export function setChartType(chartType) {
  */
 export function setChartTitle(title) {
   return { type: SET_CHART_TITLE, title };
+}
+
+/**
+ * Set values labels suffix
+ * @param {string} suffix
+ */
+export function setSuffix(suffix) {
+  return { type: SET_SUFFIX, suffix };
+}
+
+/**
+ * Set values labels prefix
+ * @param {string} prefix
+ */
+export function setPrefix(prefix) {
+  return { type: SET_PREFIX, prefix };
 }
 
 /**

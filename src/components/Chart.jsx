@@ -12,6 +12,7 @@ import getBarReverseChartData from '../charts/barReverse';
 import getPieChartData from '../charts/pie';
 import getPieReverseChartData from '../charts/pieReverse';
 import { DEMO_SHEETID } from '../constants';
+import handleOptions from '../utils/handleOptions';
 
 /**
  * Chart component
@@ -42,7 +43,17 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
     return [width, height];
   };
 
-  const { startFrom, title, flipAxis, type, colors, stacked, data } = cdata;
+  const {
+    suffix,
+    prefix,
+    startFrom,
+    title,
+    flipAxis,
+    type,
+    colors,
+    stacked,
+    data,
+  } = cdata;
 
   let chartData = {};
   let datasets = {};
@@ -61,7 +72,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
     chartTitle = title;
   }
 
-  const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis} ${stacked}`;
+  const chartKey = `${type} ${chartTitle} ${startFrom} ${flipAxis} ${stacked} ${suffix} ${prefix}`;
   let chart;
   switch (type) {
     case 'line':
@@ -78,17 +89,15 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       }
 
       datasets = { datasets: chartData.datasets, labels: chartData.labels };
-      chartData.options.maintainAspectRatio = maintainAspectRatio;
-      chartData.options.title.text = chartTitle;
-      if (startFrom !== 0) {
-        chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
-        chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
-        chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
-        chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
-      } else {
-        chartData.options.scales.xAxes[0].ticks = { beginAtZero: true };
-        chartData.options.scales.yAxes[0].ticks = { beginAtZero: true };
-      }
+      handleOptions(
+        chartData.options,
+        maintainAspectRatio,
+        chartTitle,
+        startFrom,
+        prefix,
+        suffix,
+      );
+
       chart = (
         <Line key={chartKey} data={datasets} options={chartData.options} />
       );
@@ -106,17 +115,16 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         chartData = getBarReverseChartData(data, stacked, colors);
       }
       datasets = { datasets: chartData.datasets, labels: chartData.labels };
-      chartData.options.maintainAspectRatio = maintainAspectRatio;
-      chartData.options.title.text = chartTitle;
-      if (startFrom !== 0) {
-        chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
-        chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
-        chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
-        chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
-      } else {
-        chartData.options.scales.xAxes[0].ticks = { beginAtZero: true };
-        chartData.options.scales.yAxes[0].ticks = { beginAtZero: true };
-      }
+
+      handleOptions(
+        chartData.options,
+        maintainAspectRatio,
+        chartTitle,
+        startFrom,
+        prefix,
+        suffix,
+      );
+
       chart = (
         <Bar key={chartKey} data={datasets} options={chartData.options} />
       );
@@ -134,17 +142,16 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         chartData = getHorizontalBarReverseChartData(data, colors);
       }
       datasets = { datasets: chartData.datasets, labels: chartData.labels };
-      chartData.options.maintainAspectRatio = maintainAspectRatio;
-      chartData.options.title.text = chartTitle;
-      if (startFrom !== 0) {
-        chartData.options.scales.xAxes[0].ticks.beginAtZero = false;
-        chartData.options.scales.yAxes[0].ticks.beginAtZero = false;
-        chartData.options.scales.xAxes[0].ticks.min = parseFloat(startFrom);
-        chartData.options.scales.yAxes[0].ticks.min = parseFloat(startFrom);
-      } else {
-        chartData.options.scales.xAxes[0].ticks = { beginAtZero: true };
-        chartData.options.scales.yAxes[0].ticks = { beginAtZero: true };
-      }
+
+      handleOptions(
+        chartData.options,
+        maintainAspectRatio,
+        chartTitle,
+        startFrom,
+        prefix,
+        suffix,
+      );
+
       chart = (
         <HorizontalBar
           key={chartKey}

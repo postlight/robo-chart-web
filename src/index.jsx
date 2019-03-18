@@ -38,6 +38,8 @@ const initialState = {
     colors: generateColors(300),
     color: '',
     title: '',
+    suffix: '',
+    prefix: '',
     startFrom: 0,
     flipAxis: false,
   },

@@ -81,7 +81,7 @@ a {
     max-width: 320px;
   }
   .apply-button {
-    margin-left: 20px;
+    margin-left: 10px;
     margin-bottom: 0px;
   }
   .apply-subtitle {
@@ -152,7 +152,7 @@ a {
 }
 
 .sheets-container {
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
   margin-top: $vpadding;
   margin-bottom: $vpadding;
@@ -162,14 +162,23 @@ a {
 }
 
 .card-body {
+  .type-button {
+    margin-right: 10px;
+  }
+  padding-right: 6px;
+  padding-left: 6px;
   button {
-    margin-right: 20px;
     margin-bottom: 20px;
   }
+
   .grid-coord {
     margin-bottom: 20px;
   }
   padding-bottom: 0px;
+  @include lg {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
 }
 
 .sheet-picker {

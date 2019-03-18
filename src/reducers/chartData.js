@@ -5,6 +5,8 @@ import {
   SET_CHART_COLORS,
   SET_ACTIVE_COLOR,
   SET_CHART_TITLE,
+  SET_PREFIX,
+  SET_SUFFIX,
   SET_START_FROM,
   SET_FLIP_AXIS,
 } from '../actions/chartData';
@@ -57,6 +59,18 @@ const chartData = (state = [], action) => {
       return {
         ...state,
         title: action.title,
+      };
+    }
+    case SET_SUFFIX: {
+      return {
+        ...state,
+        suffix: action.suffix,
+      };
+    }
+    case SET_PREFIX: {
+      return {
+        ...state,
+        prefix: action.prefix,
       };
     }
     case SET_START_FROM: {
