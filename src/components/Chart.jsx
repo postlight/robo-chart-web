@@ -85,7 +85,6 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         chartData = getLineChartData(data, colors);
       }
 
-      datasets = { datasets: chartData.datasets, labels: chartData.labels };
       handleOptions(
         chartData.options,
         maintainAspectRatio,
@@ -95,6 +94,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         ysuffix,
       );
 
+      datasets = { datasets: chartData.datasets, labels: chartData.labels };
       chart = (
         <Line key={chartKey} data={datasets} options={chartData.options} />
       );
@@ -105,7 +105,6 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       } else {
         chartData = getBarChartData(data, stacked, colors);
       }
-      datasets = { datasets: chartData.datasets, labels: chartData.labels };
 
       handleOptions(
         chartData.options,
@@ -116,6 +115,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         ysuffix,
       );
 
+      datasets = { datasets: chartData.datasets, labels: chartData.labels };
       chart = (
         <Bar key={chartKey} data={datasets} options={chartData.options} />
       );
@@ -126,7 +126,6 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       } else {
         chartData = getHorizontalBarChartData(data, colors);
       }
-      datasets = { datasets: chartData.datasets, labels: chartData.labels };
 
       handleOptions(
         chartData.options,
@@ -137,6 +136,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
         ysuffix,
       );
 
+      datasets = { datasets: chartData.datasets, labels: chartData.labels };
       chart = (
         <HorizontalBar
           key={chartKey}
@@ -151,6 +151,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       } else {
         chartData = getPieChartData(data, false, colors);
       }
+
       chartData.options.maintainAspectRatio = maintainAspectRatio;
       chartData.options.title.text = chartTitle;
       chart = (
@@ -163,6 +164,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       } else {
         chartData = getPieChartData(data, true, colors);
       }
+
       chartData.options.maintainAspectRatio = maintainAspectRatio;
       chartData.options.title.text = chartTitle;
       chart = (
@@ -175,6 +177,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       } else {
         chartData = getPieChartData(data, false, colors);
       }
+
       chartData.options.maintainAspectRatio = maintainAspectRatio;
       chartData.options.title.text = chartTitle;
       chart = (
@@ -191,6 +194,7 @@ const Chart = ({ cdata, activeSheet, sheetId }) => {
       } else {
         chartData = getPieChartData(data, true, colors);
       }
+
       chartData.options.maintainAspectRatio = maintainAspectRatio;
       chartData.options.title.text = chartTitle;
       chart = (

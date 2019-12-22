@@ -204,6 +204,14 @@ const ChartEditor = ({ chartData, activeSheet, dispatch }) => {
     );
   }
 
+  if (start.length === 0) {
+    ({ start } = chartData);
+  }
+
+  if (end.length === 0) {
+    ({ end } = chartData);
+  }
+
   // set chart title to sheet title, unless user provided a title
   let title = activeSheet;
   if (chartData.title && chartData.title.length > 0) {
